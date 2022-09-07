@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "name": "Chocolate Aguila",
+      "price": "250",
+      "description": "Chocolate Aguila 200gr",
+      "cost": "200",
+      "image": "https://arcorencasa.com/wp-content/uploads/2020/06/1012901.jpg",
+      "code":"aguila200"
+    },
+    {
+      "name": "Chocolate Block",
+      "price": "290",
+      "description": "Chocolate Block 170gr",
+      "cost": "180",
+      "image": "https://d3ugyf2ht6aenh.cloudfront.net/stores/798/865/products/40161206-14d390e4f46382ae0015775389904811-1024-1024.jpg",
+      "code":"block170"
+    }
+  ]
+}

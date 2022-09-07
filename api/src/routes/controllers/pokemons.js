@@ -4,7 +4,7 @@ const {Pokemon, Type} = require('../../db');
 const{API_URL_POKES}= process.env; */
 const API_URL_POKES = 'https://pokeapi.co/api/v2/pokemon';
 
-const pokeApiTemplate = (poke)=>{
+/*const pokeApiTemplate = (poke)=>{
     return {
         id: poke.id,
         name: poke.name, 
@@ -15,11 +15,11 @@ const pokeApiTemplate = (poke)=>{
         attack: poke.stats[1].base_stat,
         defense: poke.stats[2].base_stat,
         types: poke.types.map(t=> t.type.name),
-        image: poke.sprites.other.dream_world.front_default,/* sprites.other["official-artwork"].front_default */ /* sprites.other.dream_world.front_default */
+        image: poke.sprites.other.dream_world.front_default        
     }  
-}
+}*/
 
-const pokeDbTemplate = (poke)=>{
+/* const pokeDbTemplate = (poke)=>{
     return {
         id: poke.id,
         name: poke.name, 
@@ -32,37 +32,21 @@ const pokeDbTemplate = (poke)=>{
         types:  poke.types.map(e=>e.name),
         image: poke.image       
     }  
-}
+} */
 
-async function getAllApiPokes(){
+/* async function getAllApiPokes(){
     try{
-        const apiAllPokes = await axios.get(`${API_URL_POKES}?limit=40`);   
-        /* console.log('apiAllPokes')
-        console.log(apiAllPokes) */
-        const apiPokes = apiAllPokes.data?.results.map(e => axios.get(e.url)); //ingreso a todos los urls
-        /* console.log('apiPokes')
-        console.log(apiPokes)  */ 
-        const pokesUrlInfo = await axios.all(apiPokes) //espero a que se cumplan todas las promises 
-        /* console.log('pokesUrlInfo')
-        console.log(pokesUrlInfo.length) */
-        let pokesData = pokesUrlInfo?.map(e => e.data) // guardo en un array todas las promesas resueltas
-        /* console.log('pokesData')
-        console.log(pokesData.length) */
-        let pokesInfo = pokesData?.map( p => pokeApiTemplate(p)) 
-        /* console.log('pokesInfo')
-        console.log(pokesInfo.length) */
-
-        return pokesInfo
+     
 
     }catch(e){
-        console.log('error en pokesapi')
+   
         console.log(e)
         return e
     }
 
-}
+} */
 
-async function getAllDbPokes(){
+/* async function getAllDbPokes(){
     try{
         const dbPokes = await Pokemon.findAll({
             include: {
@@ -79,9 +63,9 @@ async function getAllDbPokes(){
         console.log(e)
         return e
     }
-}
+} */
 
-async function getAllPokes (){
+/* async function getAllPokes (){
     try{
         const [pokesApi, pokesDb] = await Promise.all([getAllApiPokes(), getAllDbPokes()]);
         return [...pokesApi, ...pokesDb];
@@ -91,23 +75,23 @@ async function getAllPokes (){
         console.log(e)
         return e
     }
-}
+} */
 
 //BY NAME
-async function getApiPokeByName(name){
+/* async function getApiPokeByName(name){
     try{
         const apiPokeByName = await axios.get(`${API_URL_POKES}/${name.toLowerCase().toString()}`);
         let pokeInfo =  apiPokeByName.data? pokeApiTemplate(apiPokeByName.data) : 'PDNE'          
-        /* console.log(pokeInfo) */
+        
         return pokeInfo
         
     }catch(e){
-        /* console.log(e) */
+        
         return 'PDNE'
     }
-}
+} */
 
-async function getDbPokeByName(name){
+/* async function getDbPokeByName(name){
     try{
         let dbPokeByName =  await Pokemon.findAll({
             where: {name},
@@ -121,12 +105,12 @@ async function getDbPokeByName(name){
         return resp
 
     }catch(e){
-        /* console.log(e) */
+        
         return 'PDNE'
     }
-}
+} */
 
-async function getAllPokesByName(name){
+/* async function getAllPokesByName(name){
     try{
         let apiResult = await getApiPokeByName(name);
         let dbResult = await getDbPokeByName(name);  
@@ -149,10 +133,10 @@ async function getAllPokesByName(name){
         console.log(e)
         return 'error en getAllPokesByName'
     }
-}
+} */
 
 //BY ID
-async function getPokeById(id){
+/* async function getPokeById(id){
     try{
         if(id.length > 5){
             const pokeDb = await Pokemon.findOne({
@@ -171,13 +155,13 @@ async function getPokeById(id){
             return 'PDNE'
         }
     
-}
+} */
 
 
 module.exports = {
-    getAllPokes,
+    /* getAllPokes,
     getAllPokesByName,
     getPokeById,
-    getAllDbPokes
+    getAllDbPokes */
 }
 

@@ -2,19 +2,24 @@ const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
-const pokeGet = require('./pokeGetRoute');
-const pokePost = require('./pokePostRoute');
-const types = require('./pokeTypeRoute');
-const pokeDelete = require('./pokeDeleteRoute');
+const productGet = require('./productGetRoute');
+const productPost = require('./productPostRoute');
+const productPut = require('./productPutRoute');
+const productdelete = require('./productDeleteRoute');
 
 const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.use('/pokemons', pokeGet);
-router.use('/post', pokePost)
-router.use('/types', types);
-router.use('/delete', pokeDelete);
+router.get('/', (req,res,send)=>{
+    res.send('bienvenudo al server, las rutas disponibles son: /productget, /productpost, /productput, /productdelete')
+})
+
+router.use('/productget', productGet);
+router.use('/productpost', productPost)
+ router.use('/productput', productPut); 
+router.use('/productdelete', productdelete); 
+
 
 module.exports = router;
