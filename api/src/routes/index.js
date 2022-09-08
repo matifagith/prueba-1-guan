@@ -6,6 +6,7 @@ const productGet = require('./productGetRoute');
 const productPost = require('./productPostRoute');
 const productPut = require('./productPutRoute');
 const productdelete = require('./productDeleteRoute');
+const productTypes = require('./ProductTypeRoute');
 
 const router = Router();
 
@@ -19,7 +20,8 @@ router.get('/', (req,res,send)=>{
 router.use('/productget', productGet);
 router.use('/productpost', productPost)
 router.use('/productput', productPut); 
-router.use('/productdelete', productdelete); 
+router.use('/productdelete', productdelete);
+router.use('/producttypes', productTypes); 
 
 
 module.exports = router;

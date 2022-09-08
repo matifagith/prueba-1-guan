@@ -26,6 +26,15 @@
       "image": "http://aromatessen.com/wp-content/uploads/2020/05/escoba-galponera.jpg",
       "code":"escoba1",
       "type":"limpieza"
+    },
+    {
+      "name": "Papel Higienico",
+      "price": "300",
+      "description": "Papel Higienico Higienol doble hoja",
+      "cost": "230",
+      "image": "https://jumboargentina.vtexassets.com/arquivos/ids/708066-800-auto?v=637919626218730000&width=800&height=auto&aspect=true",
+      "code":"papelh1",
+      "type":"higiene"
     }
   ]
 }
