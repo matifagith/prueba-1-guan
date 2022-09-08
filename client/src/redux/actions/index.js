@@ -1,5 +1,5 @@
 import axios from "axios";
-import {
+/* import {
   GET_PETS,
   GET_PET_NAME,
   GET_TO_DETAILS,
@@ -12,9 +12,9 @@ import {
   USERS,
   DELETE_PETS,
   EDIT_PET,
-} from "./nameAction";
+} from "./nameAction"; */
 
-export function getPets(page, filter) {
+/* export function getPets(page, filter) {
   return async (dispatch) => {
     try {
       const res = await axios.put(`/pet?page=${page}`, filter);
@@ -24,9 +24,9 @@ export function getPets(page, filter) {
       dispatch({ type: GET_PETS, payload: e.response.data });
     }
   };
-}
+} */
 
-export function searchByName(payload) {
+/* export function searchByName(payload) {
   return async (dispatch) => {
     try {
       console.log("searchByName -->", payload);
@@ -36,9 +36,9 @@ export function searchByName(payload) {
       dispatch({ type: GET_PET_NAME, payload: e.response.data });
     }
   };
-}
+} */
 
-export const petitionLoad = (payload) => {
+/* export const petitionLoad = (payload) => {
   // console.log("petitionLoad -->", payload);
   return async function (dispatch) {
     try {
@@ -49,8 +49,9 @@ export const petitionLoad = (payload) => {
     }
   };
 };
+ */
 
-export const petitionGet = (payload) => {
+/* export const petitionGet = (payload) => {
   // console.log("petitionGet -->", payload);
   return async function (dispatch) {
     try {
@@ -60,9 +61,9 @@ export const petitionGet = (payload) => {
       console.log(e);
     }
   };
-};
+}; */
 
-export const petitionGetLost = (payload) => {
+/* export const petitionGetLost = (payload) => {
   // console.log("petitionGetLost -->", payload);
   return async function (dispatch) {
     try {
@@ -72,13 +73,13 @@ export const petitionGetLost = (payload) => {
       console.log(e);
     }
   };
-};
+}; */
 
-export const editPet = (payload) => {
+/* export const editPet = (payload) => {
   return {type: EDIT_PET, payload}
-}
+} */
 
-export function getById(id) {
+/* export function getById(id) {
   return async (dispatch) => {
     try {
       const res = await axios.get(`/pet/${id}`);
@@ -87,15 +88,15 @@ export function getById(id) {
       dispatch({ type: GET_TO_DETAILS, payload: e.response.data });
     }
   };
-}
+} */
 
-export function cleanDetail() {
+/* export function cleanDetail() {
   return async (dispatch) => {
     dispatch({ type: CLEAN_DETAILS, payload: [] });
   };
-}
+} */
 
-export function getGoogle(info) {
+/* export function getGoogle(info) {
   // console.log('estoy en',info)
   return async (dispatch) => {
     try {
@@ -106,23 +107,23 @@ export function getGoogle(info) {
       console.log(err)
     }
   }
+} */
 
-}
-export const loginManual = (payload) => {
+/* export const loginManual = (payload) => {
   return { type: LOGIN, payload }
-};
+}; */
 
-export const getLogOut = () => {
+/* export const getLogOut = () => {
   localStorage.removeItem("userInfo");
   return {type: LOGOUT, payload: null};
-} 
+} */ 
 
-export const upLogin = (user) => {
+/* export const upLogin = (user) => {
   return {type: LOGIN, payload: user};
-}
+} */
 
 
-export const postRegister = (payload) => {
+/* export const postRegister = (payload) => {
   // console.log("postRegister -->", payload);
   return async function (dispatch) {
     try {
@@ -132,10 +133,10 @@ export const postRegister = (payload) => {
       console.log(e);
     }
   };
-};
+}; */
 
 
-export const getUsers = () => {
+/* export const getUsers = () => {
   return async function (dispatch) {
     try {
       const res = await axios.get('/user');
@@ -144,9 +145,9 @@ export const getUsers = () => {
       console.log(e);
     }
   };
-};
+}; */
 
-export const deletePet = (id, payload) => {
+/* export const deletePet = (id, payload) => {
   return async function (dispatch) {
     try {
       const res = await axios.put(`/pet/${id}`, payload);
@@ -155,4 +156,4 @@ export const deletePet = (id, payload) => {
       console.log(err)
     }
   }
-}
+} */

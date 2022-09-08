@@ -1,4 +1,4 @@
-import {
+/* import {
   // aqui nombre de action
   GET_PETS,
   GET_PET_NAME,
@@ -11,7 +11,7 @@ import {
   POST_PET,
   USERS,
   EDIT_PET,
-} from "../actions/nameAction";
+} from "../actions/nameAction"; */
 
 const initialState = {
   // aqui mis estados
@@ -29,15 +29,15 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_PETS: {
+    /* case GET_PETS: {
       return {
         ...state,
         pets: action.payload.pets,
         petsAmount: action.payload.total,
       };
-    }
+    } */
 
-    case GET_PET_NAME: {
+    /* case GET_PET_NAME: {
       console.log("respuesta del back --> abajo");
       console.log(action.payload);
       return {
@@ -45,54 +45,54 @@ const rootReducer = (state = initialState, action) => {
         pets: action.payload.pets,
         petsAmount: action.payload.total,
       };
-    }
+    } */
 
-    case GET_TO_DETAILS: {
+    /* case GET_TO_DETAILS: {
       return {
         ...state,
         petDetail: action.payload,
       };
-    }
-    case LOGIN_GOOGLE: {
+    } */
+    /* case LOGIN_GOOGLE: {
       return{
         ...state,
          google: action.payload
       }
-    }
+    } */
 
-    case CLEAN_DETAILS: {
+    /* case CLEAN_DETAILS: {
         return {
             ...state,
             petDetail: action.payload,
         }
-    }
+    } */
 
-    case LOGIN:{
+    /* case LOGIN:{
       return{
         ...state,
         usuario: action.payload
       }
-     }
+     } */
 
-    case LOGOUT:{
+    /* case LOGOUT:{
       return {
         ...state,
         usuario: action.payload,
       }
-    }
+    } */
 
-    case POST_PET:{
+    /* case POST_PET:{
       return {
         ...state,        
       }
-    }
+    } */
 
-    case USERS:{
+    /* case USERS:{
       return{
         ...state, 
         usuarios: action.payload
       }
-    }
+    } */
 
     default: {
       return state;
