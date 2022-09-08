@@ -8,9 +8,15 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "dependencies": {
+  "dependencies": {    
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1",
+    "react-redux": "^8.0.2",
+    "dotenv": "^16.0.1",
+    "axios": "^0.27.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
