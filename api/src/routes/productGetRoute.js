@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {getAllProducts, getAllPokesByName, getPokeById} = require ('./controllers/products') 
+const {getAllProducts, getAllPokesByName} = require ('../controllers/products') 
 
 
 
@@ -36,7 +36,7 @@ console.log(e)
         next(e)
     }
 })
- 
+
 /* router.get('/dbpokemons', async (req, res, next)=>{
     try{
         const allDbPokes = await getAllDbPokes()

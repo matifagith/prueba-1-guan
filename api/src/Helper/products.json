@@ -6,7 +6,8 @@
       "description": "Chocolate Aguila 200gr",
       "cost": "200",
       "image": "https://arcorencasa.com/wp-content/uploads/2020/06/1012901.jpg",
-      "code":"aguila200"
+      "code":"aguila200",
+      "type":"golosina"
     },
     {
       "name": "Chocolate Block",
@@ -14,7 +15,17 @@
       "description": "Chocolate Block 170gr",
       "cost": "180",
       "image": "https://d3ugyf2ht6aenh.cloudfront.net/stores/798/865/products/40161206-14d390e4f46382ae0015775389904811-1024-1024.jpg",
-      "code":"block170"
+      "code":"block170",
+      "type":"golosina"
+    },
+    {
+      "name": "Escoba",
+      "price": "400",
+      "description": "Escoba limpieza profunda",
+      "cost": "300",
+      "image": "http://aromatessen.com/wp-content/uploads/2020/05/escoba-galponera.jpg",
+      "code":"escoba1",
+      "type":"limpieza"
     }
   ]
 }

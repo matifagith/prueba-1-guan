@@ -1,5 +1,5 @@
 const axios = require('axios');
-const {Product, Type} = require('../../db');
+const {Product, Type} = require('../db');
 /* require('dotenv').config();
 const{API_URL_POKES}= process.env; */
 const API_URL_POKES = 'https://pokeapi.co/api/v2/pokemon';
@@ -79,6 +79,7 @@ const API_URL_POKES = 'https://pokeapi.co/api/v2/pokemon';
     }
 } 
 
+ 
 //BY NAME
 /* async function getApiPokeByName(name){
     try{

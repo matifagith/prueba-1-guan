@@ -1,5 +1,5 @@
 const axios = require('axios')
-const {Type} = require('../../db');
+const {Type} = require('../db');
 const TYPES_URL_API = 'https://pokeapi.co/api/v2/type'
 
 /* async function apiTypesToDb(){

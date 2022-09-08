@@ -6,8 +6,7 @@ export default function NavBar (){
     const location = useLocation()
     return (
         <Nav>
-            <NavContainer>
-            {console.log(location.pathname)}
+            <NavContainer>            
             {location.pathname === '/home'? <NavLogo to='/products'>Products</NavLogo> : <NavLogo to='/home'>Home</NavLogo>}
             </NavContainer>
         </Nav>
