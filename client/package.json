@@ -17,7 +17,12 @@
     "redux-thunk": "^2.4.1",
     "react-redux": "^8.0.2",
     "dotenv": "^16.0.1",
-    "axios": "^0.27.2"
+    "axios": "^0.27.2",
+    "styled": "^1.0.0",
+    "styled-components": "^5.3.5",
+    "sweetalert2": "^11.4.19",
+    "formik": "^2.2.9",
+    "moment": "^2.29.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
