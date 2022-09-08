@@ -1,19 +1,19 @@
 const express = require('express')
 const router = express.Router()
-/* const {getAllPokes, getAllPokesByName, getPokeById} = require ('./controllers/pokemons') */
+const {getAllProducts, getAllPokesByName, getPokeById} = require ('./controllers/products') 
 
 
 
- router.get('/', async (req, res, next)=>{
+/*  router.get('/', async (req, res, next)=>{
 try{
     return res.send('bienvenido al server')
 }
 catch(e){
 console.log(e)
 }
- })
+ }) */
 
-/* router.get('/', async (req, res, next)=>{
+ router.get('/', async (req, res, next)=>{
     try{
         const {name} = req.query
 
@@ -27,16 +27,16 @@ console.log(e)
             res.status(200).json(pokeinfoByName)
         }
         else{
-            console.log('getAllPokes()')
-            const pokes =  await getAllPokes();
+            console.log('getAllProducts()')
+            const products =  await getAllProducts();
             
-            res.status(200).json(pokes) 
+            res.status(200).json(products) 
         }
     }catch(e){
         next(e)
     }
 })
- */
+ 
 /* router.get('/dbpokemons', async (req, res, next)=>{
     try{
         const allDbPokes = await getAllDbPokes()

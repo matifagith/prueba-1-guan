@@ -18,7 +18,7 @@ router.get('/', (req,res,send)=>{
 
 router.use('/productget', productGet);
 router.use('/productpost', productPost)
- router.use('/productput', productPut); 
+router.use('/productput', productPut); 
 router.use('/productdelete', productdelete); 
 
 

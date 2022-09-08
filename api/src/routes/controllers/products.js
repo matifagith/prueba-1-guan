@@ -1,5 +1,5 @@
 const axios = require('axios');
-const {Pokemon, Type} = require('../../db');
+const {Product, Type} = require('../../db');
 /* require('dotenv').config();
 const{API_URL_POKES}= process.env; */
 const API_URL_POKES = 'https://pokeapi.co/api/v2/pokemon';
@@ -46,36 +46,38 @@ const API_URL_POKES = 'https://pokeapi.co/api/v2/pokemon';
 
 } */
 
-/* async function getAllDbPokes(){
+ async function getAllDbProducts(){
     try{
-        const dbPokes = await Pokemon.findAll({
-            include: {
+        const dbProducts = await Product.findAll({
+            /* include: {
                 model: Type,
                 attributes: ['name']
-            }
+            } */
         })    
 
-        const pokesDbInfo = dbPokes.map(p => pokeDbTemplate(p))
+        /* const pokesDbInfo = dbProducts.map(p => pokeDbTemplate(p)) */
         
-        return  pokesDbInfo
+        return  dbProducts
 
     }catch(e){
         console.log(e)
         return e
     }
-} */
+} 
 
-/* async function getAllPokes (){
+ async function getAllProducts (){
     try{
-        const [pokesApi, pokesDb] = await Promise.all([getAllApiPokes(), getAllDbPokes()]);
-        return [...pokesApi, ...pokesDb];
+        /* const [pokesApi, pokesDb] = await Promise.all([getAllApiPokes(), getAllDbPokes()]);
+        return [...pokesApi, ...pokesDb]; */
+        const dbProducts = await getAllDbProducts()
+        return dbProducts
     }catch(e){
-        console.log('pokesApi')
-        console.log(pokesApi)
+        /* console.log('pokesApi')
+        console.log(pokesApi) */
         console.log(e)
         return e
     }
-} */
+} 
 
 //BY NAME
 /* async function getApiPokeByName(name){
@@ -159,9 +161,9 @@ const API_URL_POKES = 'https://pokeapi.co/api/v2/pokemon';
 
 
 module.exports = {
-    /* getAllPokes,
-    getAllPokesByName,
-    getPokeById,
-    getAllDbPokes */
+     getAllProducts,
+    /* getAllPokesByName,
+    getPokeById, */
+    getAllDbProducts 
 }
 
