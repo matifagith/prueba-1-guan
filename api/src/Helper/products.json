@@ -35,6 +35,150 @@
       "image": "https://jumboargentina.vtexassets.com/arquivos/ids/708066-800-auto?v=637919626218730000&width=800&height=auto&aspect=true",
       "code":"papelh1",
       "type":"higiene"
+    },
+    {
+      "name": "Pepsi",
+      "price": "320",
+      "description": "Pepsi 2.25L sabor original",
+      "cost": "250",
+      "image": "https://www.stock.com.py/images/thumbs/0166200.jpeg",
+      "code":"pepsi1",
+      "type":"bebida"
+    },
+    {
+      "name": "Jugo de naranja",
+      "price": "1200",
+      "description": "Jugo Citric 5L de Naranja",
+      "cost": "800",
+      "image": "https://roldanonline.com.ar/wp-content/uploads/2020/07/7798085680172.jpg",
+      "code":"citric1",
+      "type":"bebida"
+    },
+    {
+      "name": "Cigarrillo Marlboro 20 fusion",
+      "price": "360",
+      "description": "Cigarrillo Marlboro 20 fusion",
+      "cost": "200",
+      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
+      "code":"marlboro2",
+      "type":"cigarrillo"
+    },
+    {
+      "name": "Cigarrillo Marlboro 20 fusion",
+      "price": "360",
+      "description": "Cigarrillo Marlboro 20 fusion",
+      "cost": "200",
+      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
+      "code":"marlboro2",
+      "type":"cigarrillo"
+    },
+    {
+      "name": "Cigarrillo Marlboro 20 fusion",
+      "price": "360",
+      "description": "Cigarrillo Marlboro 20 fusion",
+      "cost": "200",
+      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
+      "code":"marlboro2",
+      "type":"cigarrillo"
+    },
+    {
+      "name": "Cigarrillo Marlboro 20 fusion",
+      "price": "360",
+      "description": "Cigarrillo Marlboro 20 fusion",
+      "cost": "200",
+      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
+      "code":"marlboro2",
+      "type":"cigarrillo"
+    },
+    {
+      "name": "Cigarrillo Marlboro 20 fusion",
+      "price": "360",
+      "description": "Cigarrillo Marlboro 20 fusion",
+      "cost": "200",
+      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
+      "code":"marlboro2",
+      "type":"cigarrillo"
+    },
+    {
+      "name": "Cigarrillo Marlboro 20 fusion",
+      "price": "360",
+      "description": "Cigarrillo Marlboro 20 fusion",
+      "cost": "200",
+      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
+      "code":"marlboro2",
+      "type":"cigarrillo"
+    },
+    {
+      "name": "Cigarrillo Marlboro 20 fusion",
+      "price": "360",
+      "description": "Cigarrillo Marlboro 20 fusion",
+      "cost": "200",
+      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
+      "code":"marlboro2",
+      "type":"cigarrillo"
+    },
+    {
+      "name": "Cigarrillo Marlboro 20 fusion",
+      "price": "360",
+      "description": "Cigarrillo Marlboro 20 fusion",
+      "cost": "200",
+      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
+      "code":"marlboro2",
+      "type":"cigarrillo"
+    },
+    {
+      "name": "Cigarrillo Marlboro 20 fusion",
+      "price": "360",
+      "description": "Cigarrillo Marlboro 20 fusion",
+      "cost": "200",
+      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
+      "code":"marlboro2",
+      "type":"cigarrillo"
+    },
+    {
+      "name": "Cigarrillo Marlboro 20 fusion",
+      "price": "360",
+      "description": "Cigarrillo Marlboro 20 fusion",
+      "cost": "200",
+      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
+      "code":"marlboro2",
+      "type":"cigarrillo"
+    },
+    {
+      "name": "Cigarrillo Marlboro 20 fusion",
+      "price": "360",
+      "description": "Cigarrillo Marlboro 20 fusion",
+      "cost": "200",
+      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
+      "code":"marlboro2",
+      "type":"cigarrillo"
+    },
+    {
+      "name": "Cigarrillo Marlboro 20 fusion",
+      "price": "360",
+      "description": "Cigarrillo Marlboro 20 fusion",
+      "cost": "200",
+      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
+      "code":"marlboro2",
+      "type":"cigarrillo"
+    },
+    {
+      "name": "Cigarrillo Marlboro 20 fusion",
+      "price": "360",
+      "description": "Cigarrillo Marlboro 20 fusion",
+      "cost": "200",
+      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
+      "code":"marlboro2",
+      "type":"cigarrillo"
+    },
+    {
+      "name": "Cigarrillo Marlboro 20 fusion",
+      "price": "360",
+      "description": "Cigarrillo Marlboro 20 fusion",
+      "cost": "200",
+      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
+      "code":"marlboro2",
+      "type":"cigarrillo"
     }
   ]
 }
