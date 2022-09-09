@@ -12,3 +12,8 @@ export const ProductNavContainer = styled.div`
 export const ProductBody = styled.h1`
 
 `
+export const ProductBar = styled.div`
+display: flex;
+justify-content: space-between;
+margin: 8px;
+`

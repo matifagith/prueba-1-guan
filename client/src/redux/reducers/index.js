@@ -16,7 +16,7 @@
 const initialState = {
   // aqui mis estados
   pets: [],
-  petsAmount: {},
+/*   petsAmount: {},
   petDetail: [],
   lostpets: [],
   usuario: null,
@@ -24,7 +24,7 @@ const initialState = {
   urlBack: import.meta.env.VITE_APP_API || "http://localhost:3001",
   google:[],
   usuarios:[],
-  user:[]
+  user:[] */
 };
 
 const rootReducer = (state = initialState, action) => {
