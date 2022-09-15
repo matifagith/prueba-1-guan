@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {getAllProducts, getAllPokesByName} = require ('../controllers/products') 
+const {getAllProducts, getDbProductByName} = require ('../controllers/products') 
 
 
 
@@ -18,13 +18,13 @@ console.log(e)
         const {name} = req.query
 
         if(name){
-            console.log(`getAllPokesByName(name: ${name})`)
-            const pokeinfoByName = await getAllPokesByName(name);
-            if(pokeinfoByName === 'PDNE'){
+            console.log(`getDbProductByName(name: ${name})`)
+            const productsByName = await getDbProductByName(name);
+            /* if(pokeinfoByName === 'PDNE'){
                 res.status(200).send('PDNE')
-            }
+            } */
            
-            res.status(200).json(pokeinfoByName)
+            res.status(200).json(productsByName)
         }
         else{
             console.log('getAllProducts()')

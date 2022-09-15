@@ -1,4 +1,5 @@
 const axios = require('axios');
+const Sequelize = require('sequelize');
 const {Product, Type} = require('../db');
 /* require('dotenv').config();
 const{API_URL_POKES}= process.env; */
@@ -79,7 +80,6 @@ const API_URL_POKES = 'https://pokeapi.co/api/v2/pokemon';
     }
 } 
 
- 
 //BY NAME
 /* async function getApiPokeByName(name){
     try{
@@ -94,29 +94,30 @@ const API_URL_POKES = 'https://pokeapi.co/api/v2/pokemon';
     }
 } */
 
-/* async function getDbPokeByName(name){
+ async function getDbProductByName(name){
+    const Op = Sequelize.Op;
     try{
-        let dbPokeByName =  await Pokemon.findAll({
-            where: {name},
-            include: {model: Type}
+        let dbProductByName =  await Product.findAll({
+            where: {name:{
+                [Op.like]: `%${name}%`
+            }},
+            /* include: {model: Type} */
         })
-        if(dbPokeByName.length === 0){
-            return 'PDNE'
+        if(dbProductByName.length === 0){
+            return 'Product do not exist'
         }
+        /* let resp = dbProductByName.map(e=>pokeDbTemplate(e)) */
+        return dbProductByName
 
-        let resp = dbPokeByName.map(e=>pokeDbTemplate(e))
-        return resp
-
-    }catch(e){
-        
-        return 'PDNE'
+    }catch(e){        
+        return e
     }
-} */
+} 
 
-/* async function getAllPokesByName(name){
+/*  async function getAllProductsByName(name){
     try{
         let apiResult = await getApiPokeByName(name);
-        let dbResult = await getDbPokeByName(name);  
+        let dbResult = await getDbProductByName(name);  
         
         if(apiResult === 'PDNE' && dbResult === 'PDNE'){
             return ['PDNE']
@@ -136,7 +137,7 @@ const API_URL_POKES = 'https://pokeapi.co/api/v2/pokemon';
         console.log(e)
         return 'error en getAllPokesByName'
     }
-} */
+}  */
 
 //BY ID
 /* async function getPokeById(id){
@@ -160,11 +161,10 @@ const API_URL_POKES = 'https://pokeapi.co/api/v2/pokemon';
     
 } */
 
-
 module.exports = {
      getAllProducts,
-    /* getAllPokesByName,
-    getPokeById, */
+     getDbProductByName,
+    /* getPokeById,  */
     getAllDbProducts 
 }
 

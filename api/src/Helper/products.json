@@ -1,7 +1,7 @@
 {
   "data": [
     {
-      "name": "Chocolate Aguila",
+      "name": "chocolate aguila",
       "price": "250",
       "description": "Chocolate Aguila 200gr",
       "cost": "200",
@@ -10,7 +10,7 @@
       "type":"golosina"
     },
     {
-      "name": "Chocolate Block",
+      "name": "chocolate block",
       "price": "290",
       "description": "Chocolate Block 170gr",
       "cost": "180",
@@ -19,7 +19,7 @@
       "type":"golosina"
     },
     {
-      "name": "Escoba",
+      "name": "escoba",
       "price": "400",
       "description": "Escoba limpieza profunda",
       "cost": "300",
@@ -28,7 +28,7 @@
       "type":"limpieza"
     },
     {
-      "name": "Papel Higienico",
+      "name": "papel higienico",
       "price": "300",
       "description": "Papel Higienico Higienol doble hoja",
       "cost": "230",
@@ -37,7 +37,7 @@
       "type":"higiene"
     },
     {
-      "name": "Pepsi",
+      "name": "pepsi",
       "price": "320",
       "description": "Pepsi 2.25L sabor original",
       "cost": "250",
@@ -46,7 +46,7 @@
       "type":"bebida"
     },
     {
-      "name": "Jugo de naranja",
+      "name": "jugo de naranja",
       "price": "1200",
       "description": "Jugo Citric 5L de Naranja",
       "cost": "800",
@@ -55,7 +55,25 @@
       "type":"bebida"
     },
     {
-      "name": "Cigarrillo Marlboro 20 fusion",
+      "name": "jugo multifruta",
+      "price": "160",
+      "description": "Jugo BC multifruta 200 ml",
+      "cost": "60",
+      "image": "https://arcorencasa.com/wp-content/uploads/2020/05/1010606.jpg",
+      "code":"bc1",
+      "type":"bebida"
+    },
+    {
+      "name": "bidon cloro 5L",
+      "price": "1200",
+      "description": "Bidon cloro 5L, desinfectante para agua de piscinas",
+      "cost": "500",
+      "image": "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/047/557/products/cloro-al-90-211-047eddd95e25553f0a16442692487085-640-0.jpg",
+      "code":"cloro1",
+      "type":"limpieza"
+    },
+    {
+      "name": "cigarrillo marlboro 20 fusion",
       "price": "360",
       "description": "Cigarrillo Marlboro 20 fusion",
       "cost": "200",
@@ -64,7 +82,7 @@
       "type":"cigarrillo"
     },
     {
-      "name": "Cigarrillo Marlboro 20 fusion",
+      "name": "cigarrillo marlboro 20 fusion",
       "price": "360",
       "description": "Cigarrillo Marlboro 20 fusion",
       "cost": "200",
@@ -73,7 +91,7 @@
       "type":"cigarrillo"
     },
     {
-      "name": "Cigarrillo Marlboro 20 fusion",
+      "name": "cigarrillo marlboro 20 fusion",
       "price": "360",
       "description": "Cigarrillo Marlboro 20 fusion",
       "cost": "200",
@@ -82,7 +100,7 @@
       "type":"cigarrillo"
     },
     {
-      "name": "Cigarrillo Marlboro 20 fusion",
+      "name": "cigarrillo marlboro 20 fusion",
       "price": "360",
       "description": "Cigarrillo Marlboro 20 fusion",
       "cost": "200",
@@ -91,7 +109,7 @@
       "type":"cigarrillo"
     },
     {
-      "name": "Cigarrillo Marlboro 20 fusion",
+      "name": "cigarrillo marlboro 20 fusion",
       "price": "360",
       "description": "Cigarrillo Marlboro 20 fusion",
       "cost": "200",
@@ -100,7 +118,7 @@
       "type":"cigarrillo"
     },
     {
-      "name": "Cigarrillo Marlboro 20 fusion",
+      "name": "cigarrillo Marlboro 20 fusion",
       "price": "360",
       "description": "Cigarrillo Marlboro 20 fusion",
       "cost": "200",
@@ -109,7 +127,7 @@
       "type":"cigarrillo"
     },
     {
-      "name": "Cigarrillo Marlboro 20 fusion",
+      "name": "cigarrillo Marlboro 20 fusion",
       "price": "360",
       "description": "Cigarrillo Marlboro 20 fusion",
       "cost": "200",
@@ -118,7 +136,7 @@
       "type":"cigarrillo"
     },
     {
-      "name": "Cigarrillo Marlboro 20 fusion",
+      "name": "cigarrillo Marlboro 20 fusion",
       "price": "360",
       "description": "Cigarrillo Marlboro 20 fusion",
       "cost": "200",
@@ -127,7 +145,7 @@
       "type":"cigarrillo"
     },
     {
-      "name": "Cigarrillo Marlboro 20 fusion",
+      "name": "cigarrillo Marlboro 20 fusion",
       "price": "360",
       "description": "Cigarrillo Marlboro 20 fusion",
       "cost": "200",
@@ -136,7 +154,7 @@
       "type":"cigarrillo"
     },
     {
-      "name": "Cigarrillo Marlboro 20 fusion",
+      "name": "cigarrillo Marlboro 20 fusion",
       "price": "360",
       "description": "Cigarrillo Marlboro 20 fusion",
       "cost": "200",
@@ -145,7 +163,7 @@
       "type":"cigarrillo"
     },
     {
-      "name": "Cigarrillo Marlboro 20 fusion",
+      "name": "cigarrillo Marlboro 20 fusion",
       "price": "360",
       "description": "Cigarrillo Marlboro 20 fusion",
       "cost": "200",
@@ -154,7 +172,7 @@
       "type":"cigarrillo"
     },
     {
-      "name": "Cigarrillo Marlboro 20 fusion",
+      "name": "cigarrillo Marlboro 20 fusion",
       "price": "360",
       "description": "Cigarrillo Marlboro 20 fusion",
       "cost": "200",
@@ -163,16 +181,7 @@
       "type":"cigarrillo"
     },
     {
-      "name": "Cigarrillo Marlboro 20 fusion",
-      "price": "360",
-      "description": "Cigarrillo Marlboro 20 fusion",
-      "cost": "200",
-      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
-      "code":"marlboro2",
-      "type":"cigarrillo"
-    },
-    {
-      "name": "Cigarrillo Marlboro 20 fusion",
+      "name": "cigarrillo Marlboro 20 fusion",
       "price": "360",
       "description": "Cigarrillo Marlboro 20 fusion",
       "cost": "200",
