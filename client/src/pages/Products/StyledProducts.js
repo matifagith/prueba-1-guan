@@ -7,6 +7,7 @@ background-color: #997b81;
 `
 export const ProductNavContainer = styled.div`
 
+
 `
 
 export const ProductBody = styled.h1`

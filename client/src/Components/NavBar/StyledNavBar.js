@@ -29,4 +29,16 @@ export const NavLogo = styled(Link)`
     text-decoration: none;
     align-items: center;
     font-size: 2rem;
+    margin-left: 15px;
+`
+
+export const MiniContainer = styled.div`
+    color: #fff;
+    display: flex;
+    justify-content: space-evenly;    
+    /* justify-self: flex-start; */
+   /*  cursor: pointer;
+    text-decoration: none;
+    align-items: center;
+    font-size: 2rem; */
 `
