@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <BrowserRouter>      
       <Routes>
-      <Route path="/" element={<Landing/>}></Route>
+      <Route path="/" element={<Products/>}></Route>
       <Route path="/home" element={<Home/>}></Route>
       <Route path="/products" element={<Products/>}></Route>
       <Route path="/prueba" element={<MyComponent/>}></Route>
