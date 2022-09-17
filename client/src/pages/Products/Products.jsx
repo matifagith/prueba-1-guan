@@ -81,17 +81,16 @@ const ExpandedComponent = ({ data }) => (
   <pre>{JSON.stringify(data, null, 2)}</pre>
 );
 
-const FilterComponent = () =>{
+const FilterComponent = () => {
+  const [value, setValue] = React.useState("");
 
-  const [value, setValue] = React.useState('');
-
-  return(
-      <div>
-          <input />
-          <button onClick={()=>console.log('borrando input value')}>x</button>
-      </div>
-  )
-}
+  return (
+    <div>
+      <input />
+      <button onClick={() => console.log("borrando input value")}>x</button>
+    </div>
+  );
+};
 
 export default function Products() {
   const [products, setProduct] = useState([]);
@@ -103,11 +102,14 @@ export default function Products() {
   const [filterText, setFilterText] = useState("");
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
-  useEffect(() => {
-    axios.get(`/productget`).then((r) => {
-      setProduct(r.data);
-      setPending(false);
-    });
+  useEffect(async () => {
+    await axios
+      .get(`/productget`)
+      .then((r) => {
+        setProduct(r.data);
+        setPending(false);
+      })
+      .catch((e) => console.log(e.data));
   }, []);
 
   /*  const handleChange = ({ selectedRows }) => {
@@ -146,22 +148,27 @@ export default function Products() {
 
   /* const actionsMemo = React.useMemo(() => <Export onExport={() => downloadCSV(data)} />, []); */
 
-   const filteredItems = products.filter(
-		item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase()),
-	); 
+  const filteredItems = products.filter(
+    (item) =>
+      item.name && item.name.toLowerCase().includes(filterText.toLowerCase())
+  );
 
-   const subHeaderComponentMemo = React.useMemo(() => {
-		const handleClear = () => {
-			if (filterText) {
-				setResetPaginationToggle(!resetPaginationToggle);
-				setFilterText('');
-			}
-		};
+  const subHeaderComponentMemo = React.useMemo(() => {
+    const handleClear = () => {
+      if (filterText) {
+        setResetPaginationToggle(!resetPaginationToggle);
+        setFilterText("");
+      }
+    };
 
-		return (
-			<FilterComponent onFilter={e => setFilterText(e.target.value)} onClear={handleClear} filterText={filterText} />
-		);
-	}, [filterText, resetPaginationToggle]); 
+    return (
+      <FilterComponent
+        onFilter={(e) => setFilterText(e.target.value)}
+        onClear={handleClear}
+        filterText={filterText}
+      />
+    );
+  }, [filterText, resetPaginationToggle]);
 
   return (
     <ProductContainer>
@@ -179,16 +186,18 @@ export default function Products() {
         <DataTable
           title="Productos"
           columns={columns}
-          data={products}
-          progressPending={pending} //LOADING
+          data={filteredItems}
+          //LOADING
+          progressPending={pending}
           /* progressComponent={<CustomLoader />} */
           selectableRows
+          selectableRowsHighlight
           contextActions={contextActions}
           onSelectedRowsChange={handleRowSelected}
           clearSelectedRows={toggleCleared}
+          //VISUALIZAR MAS INFO
           expandableRows
           expandableRowsComponent={ExpandedComponent}
-          /* expandableRowsComponent={ExpandedComponent} REVISAR  */
           pagination
           paginationComponentOptions={paginationOptions}
           fixedHeader
@@ -202,7 +211,7 @@ export default function Products() {
           subHeader
           subHeaderComponent={subHeaderComponentMemo}
           persistTableHead
-          theme="default" // 'dark'          
+          theme="default" // 'dark'
         />
       </ProductBody>
     </ProductContainer>
