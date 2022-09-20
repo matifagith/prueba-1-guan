@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../../Components/NavBar/NavBar";
+/* import NavBar from "../../Components/NavBar/NavBar"; */
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DataTable from "react-data-table-component";
@@ -97,20 +97,43 @@ export default function Products() {
   const [pending, setPending] = useState(true);
   const [selectedRows, setSelectedRows] = useState([]);
   const [toggleCleared, setToggleCleared] = useState(false);
+  
 
   //SEARCH BAR
   const [filterText, setFilterText] = useState("");
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
+  const [search, setSearch] = useState("");
+  
 
-  useEffect(async () => {
+
+  const getProductsFromDb = async()=>{
     await axios
-      .get(`/productget`)
-      .then((r) => {
-        setProduct(r.data);
-        setPending(false);
-      })
-      .catch((e) => console.log(e.data));
+    .get(`/productget`)
+    .then((r) => {
+      setProduct(r.data);
+      setPending(false);
+    })
+    .catch((e) => console.log(e.data));
+  }
+
+  const getProductsFromDbByNameOrCode = async(name)=>{
+    setPending(true);
+    await axios
+    .get(`/productget?name=${name}`)
+    .then((r) => {
+      setProduct(r.data);
+      setPending(false);
+    })
+    .catch((e) => console.log(e.data));
+  }
+
+  useEffect( () => {
+    getProductsFromDb()
   }, []);
+
+  useEffect( () => {
+    getProductsFromDbByNameOrCode(search)
+  }, [search]);
 
   /*  const handleChange = ({ selectedRows }) => {
     // You can set state or dispatch with something like Redux so we can use the retrieved data
@@ -174,9 +197,9 @@ export default function Products() {
     <ProductContainer>
       {console.log(products)}
       {/* {console.log(DataTable.selectAllRowsItem)} */}
-      <ProductNavContainer>
+      {/* <ProductNavContainer>
         <NavBar />
-      </ProductNavContainer>
+      </ProductNavContainer> */}
       {/* <ProductBar>
         <SearchBar />
         <h3>Agregar producto</h3>        
@@ -187,6 +210,7 @@ export default function Products() {
           title="Productos"
           columns={columns}
           data={filteredItems}
+          noDataComponent="No hay productos con ese nombre o codigo"
           //LOADING
           progressPending={pending}
           /* progressComponent={<CustomLoader />} */
@@ -209,7 +233,12 @@ export default function Products() {
           //SEARCH BAR
           paginationResetDefaultPage={resetPaginationToggle}
           subHeader
-          subHeaderComponent={subHeaderComponentMemo}
+          subHeaderComponent={/* subHeaderComponentMemo */<input
+          type='text'
+          placeholder="nombre o codigo"
+          value={search}
+          onChange={(e)=>setSearch(e.target.value)}
+          />}
           persistTableHead
           theme="default" // 'dark'
         />

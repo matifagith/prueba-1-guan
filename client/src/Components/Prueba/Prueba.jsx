@@ -29,18 +29,7 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    id: 1,
-    title: "Beetlejuice",
-    year: "1988",
-  },
-  {
-    id: 2,
-    title: "Ghostbusters",
-    year: "1984",
-  },
-];
+const data = [];
 
 export default function MyComponent() {
   const [filterText, setFilterText] = React.useState("");

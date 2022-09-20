@@ -20,10 +20,7 @@ console.log(e)
         if(name){
             console.log(`getDbProductByName(name: ${name})`)
             const productsByName = await getDbProductByName(name);
-            /* if(pokeinfoByName === 'PDNE'){
-                res.status(200).send('PDNE')
-            } */
-           
+            console.log(productsByName)
             res.status(200).json(productsByName)
         }
         else{

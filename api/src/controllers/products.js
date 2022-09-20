@@ -1,9 +1,10 @@
-const axios = require('axios');
-const Sequelize = require('sequelize');
-const {Product, Type} = require('../db');
+const axios = require("axios");
+const Sequelize = require("sequelize");
+const { Product, Type } = require("../db");
 /* require('dotenv').config();
 const{API_URL_POKES}= process.env; */
-const API_URL_POKES = 'https://pokeapi.co/api/v2/pokemon';
+const API_URL_POKES = "https://pokeapi.co/api/v2/pokemon";
+/* const {Op} = require ('sequelize') */
 
 /*const pokeApiTemplate = (poke)=>{
     return {
@@ -47,38 +48,37 @@ const API_URL_POKES = 'https://pokeapi.co/api/v2/pokemon';
 
 } */
 
- async function getAllDbProducts(){
-    try{
-        const dbProducts = await Product.findAll({
-            /* include: {
+async function getAllDbProducts() {
+  try {
+    const dbProducts = await Product.findAll({
+      /* include: {
                 model: Type,
                 attributes: ['name']
             } */
-        })    
+    });
 
-        /* const pokesDbInfo = dbProducts.map(p => pokeDbTemplate(p)) */
-        
-        return  dbProducts
+    /* const pokesDbInfo = dbProducts.map(p => pokeDbTemplate(p)) */
 
-    }catch(e){
-        console.log(e)
-        return e
-    }
-} 
+    return dbProducts;
+  } catch (e) {
+    console.log(e);
+    return e;
+  }
+}
 
- async function getAllProducts (){
-    try{
-        /* const [pokesApi, pokesDb] = await Promise.all([getAllApiPokes(), getAllDbPokes()]);
+async function getAllProducts() {
+  try {
+    /* const [pokesApi, pokesDb] = await Promise.all([getAllApiPokes(), getAllDbPokes()]);
         return [...pokesApi, ...pokesDb]; */
-        const dbProducts = await getAllDbProducts()
-        return dbProducts
-    }catch(e){
-        /* console.log('pokesApi')
+    const dbProducts = await getAllDbProducts();
+    return dbProducts;
+  } catch (e) {
+    /* console.log('pokesApi')
         console.log(pokesApi) */
-        console.log(e)
-        return e
-    }
-} 
+    console.log(e);
+    return e;
+  }
+}
 
 //BY NAME
 /* async function getApiPokeByName(name){
@@ -94,25 +94,35 @@ const API_URL_POKES = 'https://pokeapi.co/api/v2/pokemon';
     }
 } */
 
- async function getDbProductByName(name){
-    const Op = Sequelize.Op;
-    try{
-        let dbProductByName =  await Product.findAll({
-            where: {name:{
-                [Op.like]: `%${name}%`
-            }},
-            /* include: {model: Type} */
-        })
-        if(dbProductByName.length === 0){
-            return 'Product do not exist'
-        }
-        /* let resp = dbProductByName.map(e=>pokeDbTemplate(e)) */
-        return dbProductByName
-
-    }catch(e){        
-        return e
+async function getDbProductByName(name) {
+  const Op = Sequelize.Op;
+  try {
+    let dbProductByName = await Product.findAll({
+      where: {
+        [Op.or]: [
+          {
+            name: {
+              [Op.like]: `%${name}%`,
+            },
+          },
+          {
+            code: {
+              [Op.like]: `%${name}%`,
+            },
+          },
+        ],
+      },
+      /* include: {model: Type} */
+    });
+    if (dbProductByName.length === 0) {
+      return [];
     }
-} 
+    /* let resp = dbProductByName.map(e=>pokeDbTemplate(e)) */
+    return dbProductByName;
+  } catch (e) {
+    return e;
+  }
+}
 
 /*  async function getAllProductsByName(name){
     try{
@@ -162,9 +172,8 @@ const API_URL_POKES = 'https://pokeapi.co/api/v2/pokemon';
 } */
 
 module.exports = {
-     getAllProducts,
-     getDbProductByName,
-    /* getPokeById,  */
-    getAllDbProducts 
-}
-
+  getAllProducts,
+  getDbProductByName,
+  /* getPokeById,  */
+  getAllDbProducts,
+};
