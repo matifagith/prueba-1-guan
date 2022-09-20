@@ -94,7 +94,9 @@ const FilterComponent = () => {
 
 export default function Products() {
   const [products, setProduct] = useState([]);
+  const [deleteProducts, setDeleteProducts] = useState([]);
   const [pending, setPending] = useState(true);
+
   const [selectedRows, setSelectedRows] = useState([]);
   const [toggleCleared, setToggleCleared] = useState(false);
   
@@ -145,6 +147,14 @@ export default function Products() {
     setSelectedRows(state.selectedRows);
   }, []);
 
+  const deletedProducts = async(id)=>{
+    console.log('id front', id)
+    await axios
+    .put(`productput/logicdelete`, {id})
+    .then((r) => {console.log(r.data)}).then(setSearch(''))
+    .catch((e) => console.log(e.data));
+  }
+
   const contextActions = React.useMemo(() => {
     const handleDelete = () => {
       if (
@@ -153,7 +163,10 @@ export default function Products() {
         )
       ) {
         setToggleCleared(!toggleCleared);
-        setProduct(differenceBy(products, selectedRows, "name"));
+        console.log(selectedRows.map(e=>e.id))
+        /* setDeleteProducts(differenceBy(deleteProducts, selectedRows, "name")); */
+        const arrId = selectedRows.map((r) => r.id)
+         deletedProducts(arrId) 
       }
     };
 
@@ -167,7 +180,7 @@ export default function Products() {
         Delete
       </button>
     );
-  }, [products, selectedRows, toggleCleared]);
+  }, [deleteProducts, selectedRows, toggleCleared]);
 
   /* const actionsMemo = React.useMemo(() => <Export onExport={() => downloadCSV(data)} />, []); */
 

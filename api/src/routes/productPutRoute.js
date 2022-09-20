@@ -1,11 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const Sequelize = require("sequelize");
 const { Product } = require("../db");
 const { prodFilterPaginate } = require("../controllers/products");
 
-/* let pokesDeleted = [] */
-
-router.put("/filter", async (req, res, next) => {
+/* router.put("/filter", async (req, res, next) => {
   try {
     const { page = 0, size = 6 } = req.query;
 
@@ -13,14 +12,14 @@ router.put("/filter", async (req, res, next) => {
       limit: size,
       offset: size * page,
     };
-    /* req.body.stateBinary = true; */
+    
     if (Object.entries({ ...req.body }).length !== 0)
       options.where = { ...req.body };
 
     try {
       const { count, rows } = await Product.findAndCountAll(options);
       if (rows.length === 0) return res.status(404).send("pets not found");
-      // eslint-disable-next-line no-prototype-builtins
+    
       if (req.query.hasOwnProperty("a_z"))
         req.query.a_z === "true" ? rows.sort(sortAsc) : rows.sort(sortDes);
       res.json({ total: count, pets: rows });
@@ -33,6 +32,23 @@ router.put("/filter", async (req, res, next) => {
     }
   } catch (e) {
     console.log(e);
+  }
+}); */
+
+router.put("/logicdelete", async (req, res, next) => {
+  const Op = Sequelize.Op;
+  try {
+    const { id } = req.body;
+    console.log('Soy id:', id);
+    const deleted = await Product.findAll({
+      where: {
+        id: { [Op.in]: id },
+      },
+    });
+    console.log('deleted', deleted)
+    res.status(200).send(deleted);
+  } catch (e) {
+    console.log(e)
   }
 });
 

@@ -51,10 +51,7 @@ const API_URL_POKES = "https://pokeapi.co/api/v2/pokemon";
 async function getAllDbProducts() {
   try {
     const dbProducts = await Product.findAll({
-      /* include: {
-                model: Type,
-                attributes: ['name']
-            } */
+        where: {deleted:false}
     });
 
     /* const pokesDbInfo = dbProducts.map(p => pokeDbTemplate(p)) */
@@ -109,8 +106,9 @@ async function getDbProductByName(name) {
             code: {
               [Op.like]: `%${name}%`,
             },
-          },
+          }
         ],
+        [Op.and]: [{ deleted: false }], 
       },
       /* include: {model: Type} */
     });

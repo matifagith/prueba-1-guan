@@ -37,7 +37,12 @@ module.exports = (sequelize) => {
     type: {
       type: DataTypes.STRING,
       allowNull: true,
-    }
+    },
+    deleted: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
   },
   {
     timestamps: false,
