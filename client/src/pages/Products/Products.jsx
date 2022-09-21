@@ -4,6 +4,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DataTable from "react-data-table-component";
 import SearchBar from "../../Components/SearchBar/SearchBar";
+import Swal from "sweetalert2";
 import {
   ProductContainer,
   ProductNavContainer,
@@ -21,10 +22,7 @@ const columns = [
   }, */
   {
     cell: (row) => (
-      <button
-        onClick={() => console.log(row.id) /* clickHandler */}
-        id={row.id}
-      >
+      <button onClick={() => console.log(row) /* clickHandler */} id={row.id}>
         Editar
       </button>
     ),
@@ -55,7 +53,6 @@ const columns = [
     selector: (row) => row.price,
     /* cell: (row) => (
       <input
-        name={`Precio`}
         id={row.id}
         data={row.price}
         onChange={(e) => console.log(e.target.value)}
@@ -80,7 +77,19 @@ const columns = [
   {
     name: "Imagen",
     cell: (row) => (
-      <img height="84px" width="56px" alt={row.name} src={row.image} />
+      <>
+        <img height="84px" width="56px" alt={row.name} src={row.image} /> *
+        <button
+          onClick={() => {
+            Swal.fire({
+              title: `${row.name}`,
+              html: `<img src=${row.image} alt=${row.name} height='200px' width='200px'/>`,
+            });
+          }}
+        >
+          ver
+        </button>
+      </>
     ),
     sortable: false,
   },
@@ -190,7 +199,9 @@ export default function Products() {
     const handleDelete = () => {
       if (
         window.confirm(
-          `Seguro que quiere ${papelera?'restablecer':'borrar'}:\r ${selectedRows.map((r) => r.name)}?`
+          `Seguro que quiere ${
+            papelera ? "restablecer" : "borrar"
+          }:\r ${selectedRows.map((r) => r.name)}?`
         )
       ) {
         setToggleCleared(!toggleCleared);
@@ -286,7 +297,7 @@ export default function Products() {
           pagination
           paginationComponentOptions={paginationOptions}
           fixedHeader
-          fixedHeaderScrollHeight="71.5vh"/* calc(100vh - 164px) */
+          fixedHeaderScrollHeight="71.5vh" /* calc(100vh - 164px) */
           /* dense */
           highlightOnHover
           pointerOnHover
@@ -295,9 +306,15 @@ export default function Products() {
           paginationResetDefaultPage={resetPaginationToggle}
           subHeader
           subHeaderComponent={
-            /* subHeaderComponentMemo */ <div style={{display:"flex", justifyContent:"space", alignItems:"center"}}>
+            /* subHeaderComponentMemo */ <div
+              style={{
+                display: "flex",
+                justifyContent: "space",
+                alignItems: "center",
+              }}
+            >
               <button
-               style={{  fontSize: "initial"}} 
+                style={{ fontSize: "initial" }}
                 onClick={() => {
                   setPapelera(!papelera);
                 }}
@@ -306,11 +323,12 @@ export default function Products() {
               </button>
               {console.log("papelera", papelera)}
               <input
-                style={{ 
-                  marginLeft:"10px",
+                style={{
+                  marginLeft: "10px",
                   fontFamily: "none",
                   fontSize: "initial",
-                  lineHeight: "inherit" }} 
+                  lineHeight: "inherit",
+                }}
                 type="text"
                 placeholder="buscar por nombre o codigo"
                 value={search}
@@ -318,11 +336,6 @@ export default function Products() {
               />
             </div>
           }
-
-
-        
-
-
           persistTableHead
           theme="default" // 'dark'
         />
