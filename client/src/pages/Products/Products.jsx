@@ -15,12 +15,19 @@ import {
 const EditButton = () => <button type="button">Editar </button>;
 
 const columns = [
-  {
+  /* {
     button: true,
     cell: () => <EditButton>Download Poster</EditButton>,
-  },
+  }, */
   {
-    cell:(row)=><button onClick={()=>console.log(row.id)/* clickHandler */} id={row.id}>Action</button>,
+    cell: (row) => (
+      <button
+        onClick={() => console.log(row.id) /* clickHandler */}
+        id={row.id}
+      >
+        Editar
+      </button>
+    ),
     ignoreRowClick: true,
     allowOverflow: true,
     button: true,
@@ -43,8 +50,19 @@ const columns = [
     sortable: true,
   },
   {
+    /* https://stackoverflow.com/questions/61691369/input-fields-of-react-data-table-losing-focus-after-typing */
     name: "Precio",
     selector: (row) => row.price,
+    /* cell: (row) => (
+      <input
+        name={`Precio`}
+        id={row.id}
+        data={row.price}
+        onChange={(e) => console.log(e.target.value)}
+        type="text"
+        value={row.price}
+      />
+    ), */
     sortable: true,
   },
   {
@@ -134,7 +152,7 @@ export default function Products() {
   };
 
   useEffect(() => {
-    setPending(true)
+    setPending(true);
     getProductsFromDb();
   }, [papelera]);
 
@@ -155,7 +173,10 @@ export default function Products() {
   const deletedProducts = async (id) => {
     console.log("id front", id);
     await axios
-      .put(`productput/logicdelete?action=${papelera ? 'undelete' : 'delete'}`, { id })
+      .put(
+        `productput/logicdelete?action=${papelera ? "undelete" : "delete"}`,
+        { id }
+      )
       .then((r) => {
         console.log(r.data);
       })
@@ -169,7 +190,7 @@ export default function Products() {
     const handleDelete = () => {
       if (
         window.confirm(
-          `Seguro que quiere borrar:\r ${selectedRows.map((r) => r.name)}?`
+          `Seguro que quiere ${papelera?'restablecer':'borrar'}:\r ${selectedRows.map((r) => r.name)}?`
         )
       ) {
         setToggleCleared(!toggleCleared);
@@ -181,14 +202,27 @@ export default function Products() {
     };
 
     return (
-      <button
-        key="delete"
-        onClick={handleDelete}
-        style={{ backgroundColor: "red" }}
-        icon
-      >
-        Delete
-      </button>
+      <>
+        {!papelera ? (
+          <button
+            key="delete"
+            onClick={handleDelete}
+            style={{ backgroundColor: "red" }}
+            icon
+          >
+            Eliminar
+          </button>
+        ) : (
+          <button
+            key="delete"
+            onClick={handleDelete}
+            style={{ backgroundColor: "green" }}
+            icon
+          >
+            Restablecer
+          </button>
+        )}
+      </>
     );
   }, [deleteProducts, selectedRows, toggleCleared]);
 
@@ -233,7 +267,11 @@ export default function Products() {
           title="Productos"
           columns={columns}
           data={filteredItems}
-          noDataComponent={papelera ? "La papelera esta vacia":"No hay productos con ese nombre o codigo"}
+          noDataComponent={
+            papelera
+              ? "La papelera esta vacia"
+              : "No hay productos con ese nombre o codigo"
+          }
           //LOADING
           progressPending={pending}
           /* progressComponent={<CustomLoader />} */
@@ -257,14 +295,24 @@ export default function Products() {
           paginationResetDefaultPage={resetPaginationToggle}
           subHeader
           subHeaderComponent={
-            /* subHeaderComponentMemo */ <div>
-              <button onClick={()=>{setPapelera(!papelera)}}>
-                  {papelera ? "Ir a Inventario" : "Ir a Papelera"}
+            /* subHeaderComponentMemo */ <div style={{display:"flex", justifyContent:"space", alignItems:"center"}}>
+              <button
+               style={{  fontSize: "initial"}} 
+                onClick={() => {
+                  setPapelera(!papelera);
+                }}
+              >
+                {papelera ? "Ir a Inventario" : "Ir a Papelera"}
               </button>
-              {console.log('papelera',papelera)}
+              {console.log("papelera", papelera)}
               <input
+                style={{ 
+                  marginLeft:"10px",
+                  fontFamily: "none",
+                  fontSize: "initial",
+                  lineHeight: "inherit" }} 
                 type="text"
-                placeholder="nombre o codigo"
+                placeholder="buscar por nombre o codigo"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
