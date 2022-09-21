@@ -182,7 +182,7 @@ export default function Products() {
       })
       .then(setSearch(""))
       .then(setPending(true))
-      .then(getProductsFromDb())
+      .then(await getProductsFromDb())
       .catch((e) => console.log(e.data));
   };
 
