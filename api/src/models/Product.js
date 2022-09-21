@@ -29,6 +29,7 @@ module.exports = (sequelize) => {
     image:{
       type: DataTypes.TEXT,
       allowNull: true,
+      defaultValue: "https://www.abrafersrl.com.ar/wp-content/uploads/logo-producto-generico-768x768.jpg",
     },
     code:{
       type: DataTypes.TEXT,

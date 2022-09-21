@@ -48,7 +48,7 @@ router.put("/logicdelete", async (req, res, next) => {
       },
     });
     console.log('deleted', deleted)
-    res.status(200).send(deleted);
+    return res.status(200).send(deleted);
     }
     res.status(400).send('id is required')
   } catch (e) {
