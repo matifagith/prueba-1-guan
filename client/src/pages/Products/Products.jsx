@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import DataTable from "react-data-table-component";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import Swal from "sweetalert2";
+import uploadcare from "uploadcare-widget";
+/* /uploadcare.lang.es.min.js */
 import {
   ProductContainer,
   ProductNavContainer,
@@ -78,7 +80,7 @@ const columns = [
     name: "Imagen",
     cell: (row) => (
       <>
-        <img height="84px" width="56px" alt={row.name} src={row.image} /> *
+        <img height="84px" width="56px" alt={row.name} src={row.image} />
         <button
           onClick={() => {
             Swal.fire({
@@ -313,6 +315,20 @@ export default function Products() {
                 alignItems: "center",
               }}
             >
+              <button
+                style={{ fontSize: "initial", marginRight: "10px" }}
+                onClick={() => { Swal.fire({
+                  title: `Agregar nuevo producto`,
+                  html: `<input
+                  type="hidden"
+                  role="uploadcare-uploader"
+                  data-public-key="demopublickey"
+                  data-tabs="file camera url facebook gdrive gphotos"
+              />`
+                });}}
+              >
+                Agregar
+              </button>
               <button
                 style={{ fontSize: "initial" }}
                 onClick={() => {
