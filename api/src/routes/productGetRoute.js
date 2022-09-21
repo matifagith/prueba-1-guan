@@ -15,17 +15,18 @@ console.log(e)
 
  router.get('/', async (req, res, next)=>{
     try{
-        const {name} = req.query
+        const {name, deleted} = req.query
+        console.log(deleted)
 
         if(name){
             console.log(`getDbProductByName(name: ${name})`)
-            const productsByName = await getDbProductByName(name);
+            const productsByName = await getDbProductByName(name, deleted);
             console.log(productsByName)
             res.status(200).json(productsByName)
         }
         else{
             console.log('getAllProducts()')
-            const products =  await getAllProducts();
+            const products =  await getAllProducts(deleted);
             
             res.status(200).json(products) 
         }

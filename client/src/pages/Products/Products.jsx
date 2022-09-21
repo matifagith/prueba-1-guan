@@ -12,15 +12,25 @@ import {
 } from "./StyledProducts.js";
 
 /* const ExpandedComponent = (  ) => <pre>{JSON.stringify(data, null, 2)}</pre>; REVISAR */
-const EditButton = () => <button type="button">Editar</button>;
+const EditButton = () => <button type="button">Editar </button>;
 
 const columns = [
+  {
+    button: true,
+    cell: () => <EditButton>Download Poster</EditButton>,
+  },
+  {
+    cell:(row)=><button onClick={()=>console.log(row.id)/* clickHandler */} id={row.id}>Action</button>,
+    ignoreRowClick: true,
+    allowOverflow: true,
+    button: true,
+  },
   {
     name: "ID",
     selector: (row) => row.id,
     sortable: false,
     wrap: true,
-    format: (row) => `${row.id.slice(0, 500)}`,
+    /* format: (row) => `${row.id.slice(0, 500)}`, */
   },
   {
     name: "Nombre",
@@ -61,10 +71,6 @@ const columns = [
     selector: (row) => row.type /* (row, index)=>{'type'} */,
     sortable: true,
   },
-  {
-    button: true,
-    cell: () => <EditButton>Download Poster</EditButton>,
-  },
   /*  {
     button: true,
     cell: () => <DeleteButton>Download Poster</DeleteButton>,
@@ -96,64 +102,68 @@ export default function Products() {
   const [products, setProduct] = useState([]);
   const [deleteProducts, setDeleteProducts] = useState([]);
   const [pending, setPending] = useState(true);
+  const [papelera, setPapelera] = useState(false);
 
   const [selectedRows, setSelectedRows] = useState([]);
   const [toggleCleared, setToggleCleared] = useState(false);
-  
 
   //SEARCH BAR
   const [filterText, setFilterText] = useState("");
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
   const [search, setSearch] = useState("");
-  
 
-
-  const getProductsFromDb = async()=>{
+  const getProductsFromDb = async () => {
     await axios
-    .get(`/productget`)
-    .then((r) => {
-      setProduct(r.data);
-      setPending(false);
-    })
-    .catch((e) => console.log(e.data));
-  }
+      .get(`/productget?deleted=${papelera}`)
+      .then((r) => {
+        setProduct(r.data);
+        setPending(false);
+      })
+      .catch((e) => console.log(e.data));
+  };
 
-  const getProductsFromDbByNameOrCode = async(name)=>{
+  const getProductsFromDbByNameOrCode = async (name) => {
     setPending(true);
     await axios
-    .get(`/productget?name=${name}`)
-    .then((r) => {
-      setProduct(r.data);
-      setPending(false);
-    })
-    .catch((e) => console.log(e.data));
-  }
+      .get(`/productget?name=${name}&deleted=${papelera}`)
+      .then((r) => {
+        setProduct(r.data);
+        setPending(false);
+      })
+      .catch((e) => console.log(e.data));
+  };
 
-  useEffect( () => {
-    getProductsFromDb()
-  }, []);
+  useEffect(() => {
+    setPending(true)
+    getProductsFromDb();
+  }, [papelera]);
 
-  useEffect( () => {
-    getProductsFromDbByNameOrCode(search)
+  useEffect(() => {
+    getProductsFromDbByNameOrCode(search.toLowerCase());
   }, [search]);
 
-  /*  const handleChange = ({ selectedRows }) => {
+  const handleChange = ({ selectedRows }) => {
     // You can set state or dispatch with something like Redux so we can use the retrieved data
-    setSelectedProducts(selectedRows)
-    console.log('Selected Rows: ', selectedRows);
-  }; */
+    setSelectedProducts(selectedRows);
+    console.log("Selected Rows: ", selectedRows);
+  };
 
   const handleRowSelected = React.useCallback((state) => {
     setSelectedRows(state.selectedRows);
   }, []);
 
-  const deletedProducts = async(id)=>{
-    console.log('id front', id)
+  const deletedProducts = async (id) => {
+    console.log("id front", id);
     await axios
-    .put(`productput/logicdelete`, {id})
-    .then((r) => {console.log(r.data)}).then(setSearch(''))
-    .catch((e) => console.log(e.data));
-  }
+      .put(`productput/logicdelete?action=${papelera ? 'undelete' : 'delete'}`, { id })
+      .then((r) => {
+        console.log(r.data);
+      })
+      .then(setSearch(""))
+      .then(setPending(true))
+      .then(getProductsFromDb())
+      .catch((e) => console.log(e.data));
+  };
 
   const contextActions = React.useMemo(() => {
     const handleDelete = () => {
@@ -163,10 +173,10 @@ export default function Products() {
         )
       ) {
         setToggleCleared(!toggleCleared);
-        console.log(selectedRows.map(e=>e.id))
+        console.log(selectedRows.map((e) => e.id));
         /* setDeleteProducts(differenceBy(deleteProducts, selectedRows, "name")); */
-        const arrId = selectedRows.map((r) => r.id)
-         deletedProducts(arrId) 
+        const arrId = selectedRows.map((r) => r.id);
+        deletedProducts(arrId);
       }
     };
 
@@ -223,7 +233,7 @@ export default function Products() {
           title="Productos"
           columns={columns}
           data={filteredItems}
-          noDataComponent="No hay productos con ese nombre o codigo"
+          noDataComponent={papelera ? "La papelera esta vacia":"No hay productos con ese nombre o codigo"}
           //LOADING
           progressPending={pending}
           /* progressComponent={<CustomLoader />} */
@@ -246,12 +256,20 @@ export default function Products() {
           //SEARCH BAR
           paginationResetDefaultPage={resetPaginationToggle}
           subHeader
-          subHeaderComponent={/* subHeaderComponentMemo */<input
-          type='text'
-          placeholder="nombre o codigo"
-          value={search}
-          onChange={(e)=>setSearch(e.target.value)}
-          />}
+          subHeaderComponent={
+            /* subHeaderComponentMemo */ <div>
+              <button onClick={()=>{setPapelera(!papelera)}}>
+                  {papelera ? "Ir a Inventario" : "Ir a Papelera"}
+              </button>
+              {console.log('papelera',papelera)}
+              <input
+                type="text"
+                placeholder="nombre o codigo"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+          }
           persistTableHead
           theme="default" // 'dark'
         />

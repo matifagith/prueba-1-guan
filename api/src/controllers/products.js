@@ -48,11 +48,17 @@ const API_URL_POKES = "https://pokeapi.co/api/v2/pokemon";
 
 } */
 
-async function getAllDbProducts() {
+async function getAllDbProducts(deletedd) {
   try {
-    const dbProducts = await Product.findAll({
-        where: {deleted:false}
-    });
+    const dbProducts = await Product.findAll(
+      deletedd === "false"
+        ? {
+            where: { deleted: false },
+          }
+        : deletedd === "true" && {
+            where: { deleted: true },
+          }
+    );
 
     /* const pokesDbInfo = dbProducts.map(p => pokeDbTemplate(p)) */
 
@@ -63,11 +69,11 @@ async function getAllDbProducts() {
   }
 }
 
-async function getAllProducts() {
+async function getAllProducts(deleted) {
   try {
     /* const [pokesApi, pokesDb] = await Promise.all([getAllApiPokes(), getAllDbPokes()]);
         return [...pokesApi, ...pokesDb]; */
-    const dbProducts = await getAllDbProducts();
+    const dbProducts = await getAllDbProducts(deleted);
     return dbProducts;
   } catch (e) {
     /* console.log('pokesApi')
@@ -91,7 +97,7 @@ async function getAllProducts() {
     }
 } */
 
-async function getDbProductByName(name) {
+async function getDbProductByName(name, deletedd) {
   const Op = Sequelize.Op;
   try {
     let dbProductByName = await Product.findAll({
@@ -106,9 +112,13 @@ async function getDbProductByName(name) {
             code: {
               [Op.like]: `%${name}%`,
             },
-          }
+          },
         ],
-        [Op.and]: [{ deleted: false }], 
+        [Op.and]: [
+          deletedd === "false"
+            ? { deleted: false }
+            : deletedd === "true" && { deleted: true },
+        ],
       },
       /* include: {model: Type} */
     });

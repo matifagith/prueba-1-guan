@@ -39,14 +39,18 @@ router.put("/logicdelete", async (req, res, next) => {
   const Op = Sequelize.Op;
   try {
     const { id } = req.body;
-    console.log('Soy id:', id);
-    const deleted = await Product.findAll({
+    const {action} = req.query
+    if(id){
+      console.log('Soy id:', id);
+    const deleted = await Product.update(action === 'delete' ? {deleted : 'true'} : action === 'undelete' && {deleted : 'false'},{
       where: {
         id: { [Op.in]: id },
       },
     });
     console.log('deleted', deleted)
     res.status(200).send(deleted);
+    }
+    res.status(400).send('id is required')
   } catch (e) {
     console.log(e)
   }
