@@ -286,7 +286,7 @@ export default function Products() {
           pagination
           paginationComponentOptions={paginationOptions}
           fixedHeader
-          fixedHeaderScrollHeight="calc(100vh - 164px)"
+          fixedHeaderScrollHeight="71.5vh"/* calc(100vh - 164px) */
           /* dense */
           highlightOnHover
           pointerOnHover
