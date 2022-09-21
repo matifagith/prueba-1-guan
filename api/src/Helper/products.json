@@ -83,40 +83,40 @@
       "type":"cigarrillo"
     },
     {
-      "name": "cigarrillo marlboro 20 fusion",
-      "price": "360",
-      "description": "Cigarrillo Marlboro 20 fusion",
-      "cost": "200",
-      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
-      "code":"marlboro2",
-      "type":"cigarrillo"
+      "name": "marroc",
+      "price": "80",
+      "description": "Marroc marca Fel Fort",
+      "cost": "45",
+      "image": "https://cotillongonic.com.ar/wp-content/uploads/2020/07/150_envuelto.jpg",
+      "code":"marroc1",
+      "type":"golosina"
     },
     {
-      "name": "cigarrillo marlboro 20 fusion",
-      "price": "360",
-      "description": "Cigarrillo Marlboro 20 fusion",
-      "cost": "200",
-      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
-      "code":"marlboro2",
-      "type":"cigarrillo"
+      "name": "chupetin evolution sandia",
+      "price": "40",
+      "description": "Chupetin Pop Evolutio sabor sandia",
+      "cost": "15",
+      "image": "https://www.royi.com.ar/images/catalog/product/gch051caj1.jpg",
+      "code":"chu2",
+      "type":"golosina"
     },
     {
-      "name": "cigarrillo marlboro 20 fusion",
+      "name": "cerveza salta cautiva rubia",
       "price": "360",
-      "description": "Cigarrillo Marlboro 20 fusion",
+      "description": "cerveza salta cautiva rubia 473 cc lata",
       "cost": "200",
-      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
-      "code":"marlboro2",
-      "type":"cigarrillo"
+      "image": "https://jumboargentina.vtexassets.com/arquivos/ids/683618-800-auto?v=637771773900330000&width=800&height=auto&aspect=true",
+      "code":"cervezacr",
+      "type":"bebida"
     },
     {
-      "name": "cigarrillo marlboro 20 fusion",
-      "price": "360",
-      "description": "Cigarrillo Marlboro 20 fusion",
-      "cost": "200",
-      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
-      "code":"marlboro2",
-      "type":"cigarrillo"
+      "name": "alambre galvanizado N8",
+      "price": "700",
+      "description": "ALAMBRE GALVANIZADO N.8 (4MM)",
+      "cost": "300",
+      "image": "https://chapaferro.com.ar/wp-content/uploads/2021/07/AG18X1.jpg",
+      "code":"alga8",
+      "type":"ferreteria"
     },
     {
       "name": "cigarrillo Marlboro 20 fusion",
