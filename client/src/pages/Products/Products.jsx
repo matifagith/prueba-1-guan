@@ -286,7 +286,7 @@ export default function Products() {
           pagination
           paginationComponentOptions={paginationOptions}
           fixedHeader
-          fixedHeaderScrollHeight="80vh"
+          fixedHeaderScrollHeight="calc(100vh - 164px)"
           /* dense */
           highlightOnHover
           pointerOnHover
@@ -318,6 +318,11 @@ export default function Products() {
               />
             </div>
           }
+
+
+        
+
+
           persistTableHead
           theme="default" // 'dark'
         />
