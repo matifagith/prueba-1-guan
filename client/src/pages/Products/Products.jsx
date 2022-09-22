@@ -316,32 +316,32 @@ export default function Products() {
                 alignItems: "center",
               }}
             >
-              <button
+              {!papelera && <button
                 style={{ fontSize: "initial", marginRight: "10px" }}
                 onClick={() => {
                   Swal.fire({
                     title: `Agregar nuevo producto`,
                     html: `
-                  <input type="text" id="name" class="swal2-input" placeholder="Nombre">
-                  <input type="text" id="code" class="swal2-input" placeholder="Codigo">
-                  <input type="number" id="price" class="swal2-input" placeholder="Precio">
-                  <input type="number" id="cost" class="swal2-input" placeholder="Costo">
-                  <input type="text" id="description" class="swal2-input" placeholder="Descripcion">
-                  <input
-                  type="hidden"
-                  id="image"
-                  role="uploadcare-uploader"
-                  data-public-key="demopublickey"
-                  data-tabs="file camera url facebook gdrive gphotos"
-                  />
-                  <input type="text" id="type" class="swal2-input" placeholder="Categoria">`,
+                    <p><b>Nombre:</b><input type="text" id="name1" class="swal2-input" placeholder="Nombre"></p>
+                    <p><b>Codigo:</b><input type="text" id="code" class="swal2-input" placeholder="Codigo"></p>
+                    <p><b>Precio:</b><input type="number" id="price" class="swal2-input" placeholder="Precio"></p>
+                    <p><b>Costo:</b><input type="number" id="cost" class="swal2-input" placeholder="Costo"></p>
+                    <p><b>Descripcion:</b><input type="text" id="description" class="swal2-input" placeholder="Descripcion"></p>
+                    <p><b>Imagen:</b><input
+                    type="hidden"
+                    id="image"
+                    role="uploadcare-uploader"
+                    data-public-key="demopublickey"
+                    data-tabs="file camera url facebook gdrive gphotos"
+                    /></p>
+                    <p><b>Categoria:</b><input type="text" id="type" class="swal2-input" placeholder="Categoria"></p>`,
                     confirmButtonText: "Agregar",
                     focusConfirm: false,
                     showCancelButton: true,
                     cancelButtonText: "Cancelar",
                     cancelButtonColor: "#d33",
                     preConfirm: () => {
-                      const name = Swal.getPopup().querySelector("#name").value;
+                      const name1 = Swal.getPopup().querySelector("#name1").value;
                       const code = Swal.getPopup().querySelector("#code").value;
                       const price =
                         Swal.getPopup().querySelector("#price").value;
@@ -352,7 +352,7 @@ export default function Products() {
                         Swal.getPopup().querySelector("#image").value;
                       const type = Swal.getPopup().querySelector("#type").value;
                       if (
-                        !name ||
+                        !name1 ||
                         !code ||
                         !price ||
                         !cost ||
@@ -374,15 +374,15 @@ export default function Products() {
                     //console.log('password1',  password1.value)
                     if (result.isConfirmed) {
                       const productCreated = {
-                        name: name.value,
+                        name: name1.value,
                         price: price.value,
                         cost: cost.value,
                         code: code.value,
                         description: description.value,
                         type: type.value,
                         image: image.value,
-                      }
-                      console.log('productCreated',productCreated)
+                      };
+                      console.log("productCreated", productCreated);
                       axios
                         .post(`/productpost`, productCreated)
                         .then(
@@ -390,10 +390,10 @@ export default function Products() {
                             "Excelente",
                             "Tu producto ha sido creado correctamente",
                             "success"
-                          ).then(() => refresh())
+                          ).then(() => setSearch(''))
                         )
                         .catch((e) => {
-                          console.log(e);
+                          console.log(e.data);
                           Swal.fire({
                             icon: "error",
                             title: "Oops...",
@@ -405,7 +405,7 @@ export default function Products() {
                 }}
               >
                 Agregar
-              </button>
+              </button>}
               <button
                 style={{ fontSize: "initial" }}
                 onClick={() => {
