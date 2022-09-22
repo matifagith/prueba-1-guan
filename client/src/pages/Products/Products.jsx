@@ -142,6 +142,7 @@ export default function Products() {
   const [search, setSearch] = useState("");
 
   const getProductsFromDb = async () => {
+    setPending(true);
     await axios
       .get(`/productget?deleted=${papelera}`)
       .then((r) => {
@@ -317,15 +318,91 @@ export default function Products() {
             >
               <button
                 style={{ fontSize: "initial", marginRight: "10px" }}
-                onClick={() => { Swal.fire({
-                  title: `Agregar nuevo producto`,
-                  html: `<input
+                onClick={() => {
+                  Swal.fire({
+                    title: `Agregar nuevo producto`,
+                    html: `
+                  <input type="text" id="name" class="swal2-input" placeholder="Nombre">
+                  <input type="text" id="code" class="swal2-input" placeholder="Codigo">
+                  <input type="number" id="price" class="swal2-input" placeholder="Precio">
+                  <input type="number" id="cost" class="swal2-input" placeholder="Costo">
+                  <input type="text" id="description" class="swal2-input" placeholder="Descripcion">
+                  <input
                   type="hidden"
+                  id="image"
                   role="uploadcare-uploader"
                   data-public-key="demopublickey"
                   data-tabs="file camera url facebook gdrive gphotos"
-              />`
-                });}}
+                  />
+                  <input type="text" id="type" class="swal2-input" placeholder="Categoria">`,
+                    confirmButtonText: "Agregar",
+                    focusConfirm: false,
+                    showCancelButton: true,
+                    cancelButtonText: "Cancelar",
+                    cancelButtonColor: "#d33",
+                    preConfirm: () => {
+                      const name = Swal.getPopup().querySelector("#name").value;
+                      const code = Swal.getPopup().querySelector("#code").value;
+                      const price =
+                        Swal.getPopup().querySelector("#price").value;
+                      const cost = Swal.getPopup().querySelector("#cost").value;
+                      const description =
+                        Swal.getPopup().querySelector("#description").value;
+                      const image =
+                        Swal.getPopup().querySelector("#image").value;
+                      const type = Swal.getPopup().querySelector("#type").value;
+                      if (
+                        !name ||
+                        !code ||
+                        !price ||
+                        !cost ||
+                        !description ||
+                        !type
+                      ) {
+                        Swal.showValidationMessage(
+                          `nombre, codigo, precio, costo, descripcion y categoria son requeridos`
+                        );
+                      }
+                      /* if (password1 !== password2) {
+                        Swal.showValidationMessage(`Las contraseñas no coinciden`);
+                      }
+                      if (!password1.length || !password2.length) {
+                        Swal.showValidationMessage(`Debes completar los campos`);
+                      } */
+                    },
+                  }).then((result) => {
+                    //console.log('password1',  password1.value)
+                    if (result.isConfirmed) {
+                      const productCreated = {
+                        name: name.value,
+                        price: price.value,
+                        cost: cost.value,
+                        code: code.value,
+                        description: description.value,
+                        type: type.value,
+                        image: image.value,
+                      }
+                      console.log('productCreated',productCreated)
+                      axios
+                        .post(`/productpost`, productCreated)
+                        .then(
+                          Swal.fire(
+                            "Excelente",
+                            "Tu producto ha sido creado correctamente",
+                            "success"
+                          ).then(() => refresh())
+                        )
+                        .catch((e) => {
+                          console.log(e);
+                          Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Algo salio mal",
+                          });
+                        });
+                    }
+                  });
+                }}
               >
                 Agregar
               </button>
