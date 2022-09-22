@@ -56,4 +56,21 @@ router.put("/logicdelete", async (req, res, next) => {
   }
 });
 
+router.put("/updateproduct", async (req, res, next) => {
+  try{
+    const { name, price, description, cost, image, code, type, id } = req.body
+    console.log("req.body:",req.body)
+    const udatedProduct = await Product.update({ name, price, description, cost, image, code, type }, {
+      where: {
+        id
+      }
+    })
+    console.log("udatedProduct", udatedProduct)
+    return res.status(200).send(udatedProduct);
+  }catch(e){
+    next(e)
+  }
+})
+
+
 module.exports = router;

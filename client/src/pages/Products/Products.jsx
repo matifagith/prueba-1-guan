@@ -63,19 +63,19 @@ export default function Products() {
           Swal.fire({
             title: `Editar producto`,
             html: `
-            <p><b>Nombre:</b><input type="text" id="name1" class="swal2-input" placeholder="Nombre"></p>
-            <p><b>Codigo:</b><input type="text" id="code" class="swal2-input" placeholder="Codigo"></p>
-            <p><b>Precio:</b><input type="number" id="price" class="swal2-input" placeholder="Precio"></p>
-            <p><b>Costo:</b><input type="number" id="cost" class="swal2-input" placeholder="Costo"></p>
-            <p><b>Descripcion:</b><input type="text" id="description" class="swal2-input" placeholder="Descripcion"></p>
+            <p><b>Nombre:</b><input type="text" id="name1" class="swal2-input" placeholder=${row.name}></p>
+            <p><b>Codigo:</b><input type="text" id="code" class="swal2-input" placeholder=${row.code}></p>
+            <p><b>Precio:</b><input type="number" id="price" class="swal2-input" placeholder=${row.price}></p>
+            <p><b>Costo:</b><input type="number" id="cost" class="swal2-input" placeholder=${row.cost}></p>
+            <p><b>Descripcion:</b><input type="text" id="description" class="swal2-input" placeholder=${row.description}></p>
+            <p><b>Categoria:</b><input type="text" id="type" class="swal2-input" placeholder=${row.type}></p>
             <p><b>Imagen:</b><input
             type="hidden"
             id="image"
             role="uploadcare-uploader"
             data-public-key="demopublickey"
             data-tabs="file camera url facebook gdrive gphotos"
-            /></p>
-            <p><b>Categoria:</b><input type="text" id="type" class="swal2-input" placeholder="Categoria"></p>`,
+            /></p>`,
             confirmButtonText: "Editar",
             focusConfirm: false,
             showCancelButton: true,
@@ -92,7 +92,7 @@ export default function Products() {
               const image =
                 Swal.getPopup().querySelector("#image").value;
               const type = Swal.getPopup().querySelector("#type").value;
-              if (
+             /*  if (
                 !name1 ||
                 !code ||
                 !price ||
@@ -103,7 +103,7 @@ export default function Products() {
                 Swal.showValidationMessage(
                   `nombre, codigo, precio, costo, descripcion y categoria son requeridos`
                 );
-              }
+              } */
               /* if (password1 !== password2) {
                 Swal.showValidationMessage(`Las contraseñas no coinciden`);
               }
@@ -114,18 +114,19 @@ export default function Products() {
           }).then((result) => {
             //console.log('password1',  password1.value)
             if (result.isConfirmed) {
-              const productCreated = {
-                name: name1.value,
-                price: price.value,
-                cost: cost.value,
-                code: code.value,
-                description: description.value,
-                type: type.value,
-                image: image.value,
+              const productEdited = {
+                name: name1.value.toLowerCase() || row.name,
+                price: price.value || row.price,
+                cost: cost.value || row.cost,
+                code: code.value.toLowerCase() || row.code,
+                description: description.value || row.description,
+                type: type.value || row.type,
+                image: image.value || row.image,
+                id: row.id
               };
-              console.log("productCreated", productCreated);
+              console.log("productCreated", productEdited);
               axios
-                .post(`/productpost`, productCreated)
+                .put(`productput/updateproduct`, productEdited)
                 .then(
                   Swal.fire(
                     "Excelente",
@@ -498,7 +499,8 @@ export default function Products() {
               <button
                 style={{ fontSize: "initial" }}
                 onClick={() => {
-                  setPapelera(!papelera);
+                  setPapelera(!papelera)
+                  setSearch("");
                 }}
               >
                 {papelera ? "Ir a Inventario" : "Ir a Papelera"}
