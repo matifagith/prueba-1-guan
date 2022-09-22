@@ -58,12 +58,15 @@ export default function Products() {
       cell: () => <EditButton>Download Poster</EditButton>,
     }, */
 
-    !papelera ? {
-       cell: (row) => (
-        <button onClick={() => {
-          Swal.fire({
-            title: `Editar producto`,
-            html: `
+    !papelera
+      ? {
+          cell: (row) => (
+            <button
+              onClick={
+                () => {
+                  Swal.fire({
+                    title: `Editar producto`,
+                    html: `
             <p><b>Nombre:</b><input type="text" id="name1" class="swal2-input" placeholder=${row.name}></p>
             <p><b>Codigo:</b><input type="text" id="code" class="swal2-input" placeholder=${row.code}></p>
             <p><b>Precio:</b><input type="number" id="price" class="swal2-input" placeholder=${row.price}></p>
@@ -77,23 +80,24 @@ export default function Products() {
             data-public-key="demopublickey"
             data-tabs="file camera url facebook gdrive gphotos"
             /></p>`,
-            confirmButtonText: "Editar",
-            focusConfirm: false,
-            showCancelButton: true,
-            cancelButtonText: "Cancelar",
-            cancelButtonColor: "#d33",
-            preConfirm: () => {
-              const name1 = Swal.getPopup().querySelector("#name1").value;
-              const code = Swal.getPopup().querySelector("#code").value;
-              const price =
-                Swal.getPopup().querySelector("#price").value;
-              const cost = Swal.getPopup().querySelector("#cost").value;
-              const description =
-                Swal.getPopup().querySelector("#description").value;
-              const image =
-                Swal.getPopup().querySelector("#image").value;
-              const type = Swal.getPopup().querySelector("#type").value;
-             /*  if (
+                    confirmButtonText: "Editar",
+                    focusConfirm: false,
+                    showCancelButton: true,
+                    cancelButtonText: "Cancelar",
+                    cancelButtonColor: "#d33",
+                    preConfirm: () => {
+                      const name1 =
+                        Swal.getPopup().querySelector("#name1").value;
+                      const code = Swal.getPopup().querySelector("#code").value;
+                      const price =
+                        Swal.getPopup().querySelector("#price").value;
+                      const cost = Swal.getPopup().querySelector("#cost").value;
+                      const description =
+                        Swal.getPopup().querySelector("#description").value;
+                      const image =
+                        Swal.getPopup().querySelector("#image").value;
+                      const type = Swal.getPopup().querySelector("#type").value;
+                      /*  if (
                 !name1 ||
                 !code ||
                 !price ||
@@ -105,89 +109,100 @@ export default function Products() {
                   `nombre, codigo, precio, costo, descripcion y categoria son requeridos`
                 );
               } */
-              /* if (password1 !== password2) {
+                      /* if (password1 !== password2) {
                 Swal.showValidationMessage(`Las contraseñas no coinciden`);
               }
               if (!password1.length || !password2.length) {
                 Swal.showValidationMessage(`Debes completar los campos`);
               } */
-            },
-          }).then((result) => {
-            //console.log('password1',  password1.value)
-            if (result.isConfirmed) {
-              const productEdited = {
-                name: name1.value.toLowerCase() || row.name,
-                price: price.value || row.price,
-                cost: cost.value || row.cost,
-                code: code.value.toLowerCase() || row.code,
-                description: description.value || row.description,
-                type: type.value || row.type,
-                image: image.value || row.image,
-                id: row.id
-              };
-              console.log("productCreated", productEdited);
-              axios
-                .put(`productput/updateproduct`, productEdited)
-                .then(
-                  Swal.fire(
-                    "Excelente",
-                    "Tu producto ha sido editado correctamente",
-                    "success"
-                  ).then(() => setSearch('a'))
-                  .then(() => setSearch(''))
-                )
-                .catch((e) => {
-                  console.log(e.data);
-                  Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Algo salio mal",
+                    },
+                  }).then((result) => {
+                    //console.log('password1',  password1.value)
+                    if (result.isConfirmed) {
+                      const productEdited = {
+                        name: name1.value.toLowerCase() || row.name,
+                        price: price.value || row.price,
+                        cost: cost.value || row.cost,
+                        code: code.value.toLowerCase() || row.code,
+                        description: description.value || row.description,
+                        type: type.value || row.type,
+                        image: image.value || row.image,
+                        id: row.id,
+                      };
+                      console.log("productCreated", productEdited);
+                      axios
+                        .put(`productput/updateproduct`, productEdited)
+                        .then(
+                          Swal.fire(
+                            "Excelente",
+                            "Tu producto ha sido editado correctamente",
+                            "success"
+                          ).then(async () => await getProductsFromDb())
+                        )
+                        .catch((e) => {
+                          console.log(e.data);
+                          Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Algo salio mal",
+                          });
+                        });
+                    }
                   });
-                });
-            }
-          });
-        } /* clickHandler */} id={row.id}>
-          Editar
-        </button>
-      ),
-      ignoreRowClick: true,
-      allowOverflow: true,
-      button: true,
-    } : {cell: (row) => (
-      <button onClick={() => { 
-        Swal.fire({
-          title: "Seguro quiere eliminar definitivamente este producto ?",
-          confirmButtonText: "Aceptar",
-          focusConfirm: false,
-          showCancelButton: true,
-          cancelButtonText: "Cancelar",
-          cancelButtonColor: "#d33",
-        }).then(async (result) => {
-          //console.log('password1',  password1.value)
-          if (result.isConfirmed) {
-            const idProduct = row.id
-            console.log("idProduct:",idProduct)
-            await axios
-              .delete(`/productdelete/${idProduct}`)
-              .then(
-                Swal.fire(
-                  "Excelente",
-                  "El produto ha sido eliminado definitivamente",
-                  "success"
-                ).then(() => refresh())
-              )
-              .catch((e) => {
-                console.log(e);
+                } /* clickHandler */
+              }
+              id={row.id}
+            >
+              Editar
+            </button>
+          ),
+          ignoreRowClick: true,
+          allowOverflow: true,
+          button: true,
+        }
+      : {
+          cell: (row) => (
+            <button
+              onClick={() => {
                 Swal.fire({
-                  icon: "error",
-                  title: "Oops...",
-                  text: "Algo salio mal",
+                  title:
+                    "Seguro quiere eliminar definitivamente este producto ?",
+                  confirmButtonText: "Aceptar",
+                  focusConfirm: false,
+                  showCancelButton: true,
+                  cancelButtonText: "Cancelar",
+                  cancelButtonColor: "#d33",
+                }).then(async (result) => {
+                  //console.log('password1',  password1.value)
+                  if (result.isConfirmed) {
+                    const idProduct = row.id;
+                    console.log("idProduct:", idProduct);
+                    await axios
+                      .delete(`/productdelete/${idProduct}`)
+                      .then(
+                        Swal.fire(
+                          "Excelente",
+                          "El produto ha sido eliminado definitivamente",
+                          "success"
+                        ).then(async () => getProductsFromDb())
+                      )
+                      .catch((e) => {
+                        console.log(e);
+                        Swal.fire({
+                          icon: "error",
+                          title: "Oops...",
+                          text: "Algo salio mal",
+                        });
+                      });
+                  }
                 });
-              });
-          }
-        });
-       }}>Eliminar</button>)},
-   /*  {
+              }}
+            >
+              Eliminar
+            </button>
+          ),
+        },
+    /*  {
       name: "ID",
       selector: (row) => row.id,
       sortable: false,
@@ -263,29 +278,26 @@ export default function Products() {
 
   const getProductsFromDb = async () => {
     setPending(true);
-    setSearch("")
+    setSearch("");
     await axios
       .get(`/productget?deleted=${papelera}`)
-      .then((r) => {
-        setProduct(r.data);
-        setPending(false);
-      })
+      .then((r) => setProduct(r.data))
+      .then(() => setPending(false))
       .catch((e) => console.log(e.data));
   };
 
   const getProductsFromDbByNameOrCode = async (name) => {
-    setPending(true);
+        setPending(true);
     await axios
-      .get(`/productget?name=${name}&deleted=${papelera}`)
+      .get(`/productget?name=${name.toLowerCase()}&deleted=${papelera}`)
       .then((r) => {
         setProduct(r.data);
-        setPending(false);
       })
+      .then(() => setPending(false))
       .catch((e) => console.log(e.data));
   };
 
   useEffect(() => {
-    setPending(true);
     getProductsFromDb();
   }, [papelera]);
 
@@ -315,7 +327,7 @@ export default function Products() {
       })
       .then(setSearch(""))
       .then(setPending(true))
-      .then(await getProductsFromDb())
+      .then(async () => await getProductsFromDb())
       .catch((e) => console.log(e.data));
   };
 
@@ -399,7 +411,7 @@ export default function Products() {
       <ProductBody>
         {/* <div className="table-responsive"> */}
         <DataTable
-          title={!papelera ? "Productos - Inventario": "Productos - Papelera"}
+          title={!papelera ? "Productos - Inventario" : "Productos - Papelera"}
           columns={columns}
           data={filteredItems}
           noDataComponent={
@@ -416,7 +428,7 @@ export default function Products() {
           onSelectedRowsChange={handleRowSelected}
           clearSelectedRows={toggleCleared}
           //VISUALIZAR MAS INFO
-         // expandableRows
+          // expandableRows
           expandableRowsComponent={ExpandedComponent}
           pagination
           paginationComponentOptions={paginationOptions}
@@ -430,21 +442,21 @@ export default function Products() {
           paginationResetDefaultPage={resetPaginationToggle}
           subHeader
           subHeaderComponent={
-            
-            /* subHeaderComponentMemo */ 
-              <div
+            /* subHeaderComponentMemo */
+            <div
               style={{
                 display: "flex",
                 justifyContent: "space",
                 alignItems: "center",
               }}
             >
-              {!papelera && <button
-                style={{ fontSize: "initial", marginRight: "10px" }}
-                onClick={() => {
-                  Swal.fire({
-                    title: `Agregar nuevo producto`,
-                    html: `
+              {!papelera && (
+                <button
+                  style={{ fontSize: "initial", marginRight: "10px" }}
+                  onClick={() => {
+                    Swal.fire({
+                      title: `Agregar nuevo producto`,
+                      html: `
                     <p><b>Nombre:</b><input type="text" id="name1" class="swal2-input" placeholder="Nombre"></p>
                     <p><b>Codigo:</b><input type="text" id="code" class="swal2-input" placeholder="Codigo"></p>
                     <p><b>Precio:</b><input type="number" id="price" class="swal2-input" placeholder="Precio"></p>
@@ -460,81 +472,86 @@ export default function Products() {
                     data-images-only="true"
                     data-tabs="file camera url gdrive gphotos"
                     /></p>`,
-                    confirmButtonText: "Agregar",
-                    focusConfirm: false,
-                    showCancelButton: true,
-                    cancelButtonText: "Cancelar",
-                    cancelButtonColor: "#d33",
-                    preConfirm: () => {
-                      const name1 = Swal.getPopup().querySelector("#name1").value;
-                      const code = Swal.getPopup().querySelector("#code").value;
-                      const price =
-                        Swal.getPopup().querySelector("#price").value;
-                      const cost = Swal.getPopup().querySelector("#cost").value;
-                      const description =
-                        Swal.getPopup().querySelector("#description").value;
-                      const image =
-                        Swal.getPopup().querySelector("#image").value;
-                      const type = Swal.getPopup().querySelector("#type").value;
-                      if (
-                        !name1 ||
-                        !code ||
-                        !price ||
-                        !cost ||
-                        !description ||
-                        !type
-                      ) {
-                        Swal.showValidationMessage(
-                          `nombre, codigo, precio, costo, descripcion y categoria son requeridos`
-                        );
-                      }
-                      /* if (password1 !== password2) {
+                      confirmButtonText: "Agregar",
+                      focusConfirm: false,
+                      showCancelButton: true,
+                      cancelButtonText: "Cancelar",
+                      cancelButtonColor: "#d33",
+                      preConfirm: () => {
+                        const name1 =
+                          Swal.getPopup().querySelector("#name1").value;
+                        const code =
+                          Swal.getPopup().querySelector("#code").value;
+                        const price =
+                          Swal.getPopup().querySelector("#price").value;
+                        const cost =
+                          Swal.getPopup().querySelector("#cost").value;
+                        const description =
+                          Swal.getPopup().querySelector("#description").value;
+                        const image =
+                          Swal.getPopup().querySelector("#image").value;
+                        const type =
+                          Swal.getPopup().querySelector("#type").value;
+                        if (
+                          !name1 ||
+                          !code ||
+                          !price ||
+                          !cost ||
+                          !description ||
+                          !type
+                        ) {
+                          Swal.showValidationMessage(
+                            `nombre, codigo, precio, costo, descripcion y categoria son requeridos`
+                          );
+                        }
+                        /* if (password1 !== password2) {
                         Swal.showValidationMessage(`Las contraseñas no coinciden`);
                       }
                       if (!password1.length || !password2.length) {
                         Swal.showValidationMessage(`Debes completar los campos`);
                       } */
-                    },
-                  }).then((result) => {
-                    //console.log('password1',  password1.value)
-                    if (result.isConfirmed) {
-                      const productCreated = {
-                        name: name1.value,
-                        price: price.value,
-                        cost: cost.value,
-                        code: code.value,
-                        description: description.value,
-                        type: type.value,
-                        image: image.value,
-                      };
-                      console.log("productCreated", productCreated);
-                      axios
-                        .post(`/productpost`, productCreated)
-                        .then(
-                          Swal.fire(
-                            "Excelente",
-                            "Tu producto ha sido creado correctamente",
-                            "success"
-                          ).then(() => setSearch(''))
-                        )
-                        .catch((e) => {
-                          console.log(e.data);
-                          Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Algo salio mal",
+                      },
+                    }).then((result) => {
+                      //console.log('password1',  password1.value)
+                      if (result.isConfirmed) {
+                        const productCreated = {
+                          name: name1.value,
+                          price: price.value,
+                          cost: cost.value,
+                          code: code.value,
+                          description: description.value,
+                          type: type.value,
+                          image: image.value,
+                        };
+                        console.log("productCreated", productCreated);
+                        axios
+                          .post(`/productpost`, productCreated)
+                          .then(
+                            Swal.fire(
+                              "Excelente",
+                              "Tu producto ha sido creado correctamente",
+                              "success"
+                            ).then(async () => await getProductsFromDb())
+                          )
+                          .catch((e) => {
+                            console.log(e.data);
+                            Swal.fire({
+                              icon: "error",
+                              title: "Oops...",
+                              text: "Algo salio mal",
+                            });
                           });
-                        });
-                    }
-                  });
-                }}
-              >
-                Agregar producto
-              </button>}
+                      }
+                    });
+                  }}
+                >
+                  Agregar producto
+                </button>
+              )}
               <button
                 style={{ fontSize: "initial" }}
                 onClick={() => {
-                  setPapelera(!papelera)
+                  setPapelera(!papelera);
                   setSearch("");
                 }}
               >
@@ -553,7 +570,16 @@ export default function Products() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <button style={{ fontSize: "initial", padding:"5px 5px", marginLeft:"4px" }} onClick={()=>setSearch("")}>x</button>
+              <button
+                style={{
+                  fontSize: "initial",
+                  padding: "5px 5px",
+                  marginLeft: "4px",
+                }}
+                onClick={() => setSearch("")}
+              >
+                x
+              </button>
             </div>
           }
           persistTableHead
