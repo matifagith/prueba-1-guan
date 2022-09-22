@@ -416,7 +416,7 @@ export default function Products() {
           onSelectedRowsChange={handleRowSelected}
           clearSelectedRows={toggleCleared}
           //VISUALIZAR MAS INFO
-          expandableRows
+         // expandableRows
           expandableRowsComponent={ExpandedComponent}
           pagination
           paginationComponentOptions={paginationOptions}
