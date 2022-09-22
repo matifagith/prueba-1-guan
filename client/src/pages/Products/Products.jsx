@@ -124,8 +124,8 @@ export default function Products() {
                         price: price.value || row.price,
                         cost: cost.value || row.cost,
                         code: code.value.toLowerCase() || row.code,
-                        description: description.value || row.description,
-                        type: type.value || row.type,
+                        description: description.value.toLowerCase() || row.description.toLowerCase(),
+                        type: type.value.toLowerCase() || row.type.toLowerCase(),
                         image: image.value || row.image,
                         id: row.id,
                       };
@@ -515,12 +515,12 @@ export default function Products() {
                       //console.log('password1',  password1.value)
                       if (result.isConfirmed) {
                         const productCreated = {
-                          name: name1.value,
+                          name: name1.value.toLowerCase(),
                           price: price.value,
                           cost: cost.value,
-                          code: code.value,
-                          description: description.value,
-                          type: type.value,
+                          code: code.value.toLowerCase(),
+                          description: description.value.toLowerCase(),
+                          type: type.value.toLowerCase(),
                           image: image.value,
                         };
                         console.log("productCreated", productCreated);
