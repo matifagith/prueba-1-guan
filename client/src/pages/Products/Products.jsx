@@ -57,7 +57,8 @@ export default function Products() {
       button: true,
       cell: () => <EditButton>Download Poster</EditButton>,
     }, */
-    !papelera && {
+
+    !papelera ? {
        cell: (row) => (
         <button onClick={() => {
           Swal.fire({
@@ -152,7 +153,40 @@ export default function Products() {
       ignoreRowClick: true,
       allowOverflow: true,
       button: true,
-    },
+    } : {cell: (row) => (
+      <button onClick={() => { 
+        Swal.fire({
+          title: "Seguro quiere eliminar definitivamente este producto ?",
+          confirmButtonText: "Aceptar",
+          focusConfirm: false,
+          showCancelButton: true,
+          cancelButtonText: "Cancelar",
+          cancelButtonColor: "#d33",
+        }).then(async (result) => {
+          //console.log('password1',  password1.value)
+          if (result.isConfirmed) {
+            const idProduct = row.id
+            console.log("idProduct:",idProduct)
+            await axios
+              .delete(`/productdelete/${idProduct}`)
+              .then(
+                Swal.fire(
+                  "Excelente",
+                  "El produto ha sido eliminado definitivamente",
+                  "success"
+                ).then(() => refresh())
+              )
+              .catch((e) => {
+                console.log(e);
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Algo salio mal",
+                });
+              });
+          }
+        });
+       }}>Eliminar</button>)},
     {
       name: "ID",
       selector: (row) => row.id,
@@ -229,6 +263,7 @@ export default function Products() {
 
   const getProductsFromDb = async () => {
     setPending(true);
+    setSearch("")
     await axios
       .get(`/productget?deleted=${papelera}`)
       .then((r) => {
