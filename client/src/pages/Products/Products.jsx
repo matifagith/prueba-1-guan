@@ -187,13 +187,13 @@ export default function Products() {
           }
         });
        }}>Eliminar</button>)},
-    {
+   /*  {
       name: "ID",
       selector: (row) => row.id,
       sortable: false,
       wrap: true,
-      /* format: (row) => `${row.id.slice(0, 500)}`, */
-    },
+      // format: (row) => `${row.id.slice(0, 500)}`,
+    }, */
     {
       name: "Nombre",
       selector: (row) => row.name,
