@@ -415,9 +415,9 @@ export default function Products() {
           columns={columns}
           data={filteredItems}
           noDataComponent={
-            papelera
-              ? "La papelera esta vacia"
-              : "No hay productos con ese nombre o codigo"
+            !papelera && search.length === 0 ?
+              "El inventario esta vacio" : !papelera && search.length > 0 ? "No hay productos con ese nombre o codigo"
+              : papelera && search.length === 0 ? "La papelera esta vacia" : papelera && search.length > 0 &&  "No hay productos con ese nombre o codigo"
           }
           //LOADING
           progressPending={pending}
