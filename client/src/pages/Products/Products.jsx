@@ -250,8 +250,14 @@ export default function Products() {
       name: "Imagen",
       cell: (row) => (
         <>
-          <img height="84px" width="56px" alt={row.name} src={row.image} />
-          <button
+          <img onClick={() => {Swal.fire({
+                title: `${row.name}`,
+                html: `<img src=${row.image} alt=${row.name} height='200px' width='200px'/>`,
+              });}}  alt={row.name} src={row.image} style={{
+                height:"84px", width:"56px", padding: "2px",
+                backgroundColor: "black"
+              }} />
+          {/* <button
             onClick={() => {
               Swal.fire({
                 title: `${row.name}`,
@@ -260,7 +266,7 @@ export default function Products() {
             }}
           >
             ver
-          </button>
+          </button> */}
         </>
       ),
       sortable: false,
