@@ -41,7 +41,7 @@ router.put("/logicdelete", async (req, res, next) => {
     const { id } = req.body;
     const {action} = req.query
     if(id){
-      console.log('Soy id:', id);
+    console.log('Soy id:', id);
     const deleted = await Product.update(action === 'delete' ? {deleted : 'true'} : action === 'undelete' && {deleted : 'false'},{
       where: {
         id: { [Op.in]: id },

@@ -58,15 +58,14 @@ export default function Products() {
       cell: () => <EditButton>Download Poster</EditButton>,
     }, */
 
-    !papelera
-      ? {
-          cell: (row) => (
-            <button
-              onClick={
-                () => {
-                  Swal.fire({
-                    title: `Editar producto`,
-                    html: `
+    !papelera && {
+      cell: (row) => (
+        <button
+          onClick={
+            () => {
+              Swal.fire({
+                title: `Editar producto`,
+                html: `
             <p><b>Nombre:</b><input type="text" id="name1" class="swal2-input" placeholder=${row.name}></p>
             <p><b>Codigo:</b><input type="text" id="code" class="swal2-input" placeholder=${row.code}></p>
             <p><b>Precio:</b><input type="number" id="price" class="swal2-input" placeholder=${row.price}></p>
@@ -80,24 +79,21 @@ export default function Products() {
             data-public-key="demopublickey"
             data-tabs="file camera url facebook gdrive gphotos"
             /></p>`,
-                    confirmButtonText: "Editar",
-                    focusConfirm: false,
-                    showCancelButton: true,
-                    cancelButtonText: "Cancelar",
-                    cancelButtonColor: "#d33",
-                    preConfirm: () => {
-                      const name1 =
-                        Swal.getPopup().querySelector("#name1").value;
-                      const code = Swal.getPopup().querySelector("#code").value;
-                      const price =
-                        Swal.getPopup().querySelector("#price").value;
-                      const cost = Swal.getPopup().querySelector("#cost").value;
-                      const description =
-                        Swal.getPopup().querySelector("#description").value;
-                      const image =
-                        Swal.getPopup().querySelector("#image").value;
-                      const type = Swal.getPopup().querySelector("#type").value;
-                      /*  if (
+                confirmButtonText: "Editar",
+                focusConfirm: false,
+                showCancelButton: true,
+                cancelButtonText: "Cancelar",
+                cancelButtonColor: "#d33",
+                preConfirm: () => {
+                  const name1 = Swal.getPopup().querySelector("#name1").value;
+                  const code = Swal.getPopup().querySelector("#code").value;
+                  const price = Swal.getPopup().querySelector("#price").value;
+                  const cost = Swal.getPopup().querySelector("#cost").value;
+                  const description =
+                    Swal.getPopup().querySelector("#description").value;
+                  const image = Swal.getPopup().querySelector("#image").value;
+                  const type = Swal.getPopup().querySelector("#type").value;
+                  /*  if (
                 !name1 ||
                 !code ||
                 !price ||
@@ -109,99 +105,70 @@ export default function Products() {
                   `nombre, codigo, precio, costo, descripcion y categoria son requeridos`
                 );
               } */
-                      /* if (password1 !== password2) {
+                  /* if (password1 !== password2) {
                 Swal.showValidationMessage(`Las contraseñas no coinciden`);
               }
               if (!password1.length || !password2.length) {
                 Swal.showValidationMessage(`Debes completar los campos`);
               } */
-                    },
-                  }).then((result) => {
-                    //console.log('password1',  password1.value)
-                    if (result.isConfirmed) {
-                      const productEdited = {
-                        name: name1.value.toLowerCase() || row.name,
-                        price: price.value || row.price,
-                        cost: cost.value || row.cost,
-                        code: code.value.toLowerCase() || row.code,
-                        description: description.value.toLowerCase() || row.description.toLowerCase(),
-                        type: type.value.toLowerCase() || row.type.toLowerCase(),
-                        image: image.value || row.image,
-                        id: row.id,
-                      };
-                      console.log("productCreated", productEdited);
-                      axios
-                        .put(`productput/updateproduct`, productEdited)
-                        .then(
-                          Swal.fire(
-                            "Excelente",
-                            "Tu producto ha sido editado correctamente",
-                            "success"
-                          ).then(async () => await getProductsFromDb())
-                        )
-                        .catch((e) => {
-                          console.log(e.data);
-                          Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Algo salio mal",
-                          });
-                        });
-                    }
-                  });
-                } /* clickHandler */
-              }
-              id={row.id}
-            >
-              Editar
-            </button>
-          ),
-          ignoreRowClick: true,
-          allowOverflow: true,
-          button: true,
-        }
-      : {
+                },
+              }).then((result) => {
+                //console.log('password1',  password1.value)
+                if (result.isConfirmed) {
+                  const productEdited = {
+                    name: name1.value.toLowerCase() || row.name,
+                    price: price.value || row.price,
+                    cost: cost.value || row.cost,
+                    code: code.value.toLowerCase() || row.code,
+                    description:
+                      description.value.toLowerCase() ||
+                      row.description.toLowerCase(),
+                    type: type.value.toLowerCase() || row.type.toLowerCase(),
+                    image: image.value || row.image,
+                    id: row.id,
+                  };
+                  console.log("productCreated", productEdited);
+                  axios
+                    .put(`productput/updateproduct`, productEdited)
+                    .then(
+                      Swal.fire(
+                        "Excelente",
+                        "Tu producto ha sido editado correctamente",
+                        "success"
+                      ).then(async () => await getProductsFromDb())
+                    )
+                    .catch((e) => {
+                      console.log(e.data);
+                      Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Algo salio mal",
+                      });
+                    });
+                }
+              });
+            } /* clickHandler */
+          }
+          id={row.id}
+        >
+          Editar
+        </button>
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      button: true,
+    },
+    /*  {
           cell: (row) => (
             <button
               onClick={() => {
-                Swal.fire({
-                  title:
-                    "Seguro quiere eliminar definitivamente este producto ?",
-                  confirmButtonText: "Aceptar",
-                  focusConfirm: false,
-                  showCancelButton: true,
-                  cancelButtonText: "Cancelar",
-                  cancelButtonColor: "#d33",
-                }).then(async (result) => {
-                  //console.log('password1',  password1.value)
-                  if (result.isConfirmed) {
-                    const idProduct = row.id;
-                    console.log("idProduct:", idProduct);
-                    await axios
-                      .delete(`/productdelete/${idProduct}`)
-                      .then(
-                        Swal.fire(
-                          "Excelente",
-                          "El produto ha sido eliminado definitivamente",
-                          "success"
-                        ).then(async () => getProductsFromDb())
-                      )
-                      .catch((e) => {
-                        console.log(e);
-                        Swal.fire({
-                          icon: "error",
-                          title: "Oops...",
-                          text: "Algo salio mal",
-                        });
-                      });
-                  }
-                });
+               ;
               }}
             >
               Eliminar
             </button>
           ),
-        },
+        }, */
     /*  {
       name: "ID",
       selector: (row) => row.id,
@@ -250,13 +217,22 @@ export default function Products() {
       name: "Imagen",
       cell: (row) => (
         <>
-          <img onClick={() => {Swal.fire({
+          <img
+            onClick={() => {
+              Swal.fire({
                 title: `${row.name}`,
                 html: `<img src=${row.image} alt=${row.name} height='200px' width='200px'/>`,
-              });}}  alt={row.name} src={row.image} style={{
-                height:"84px", width:"56px", padding: "2px",
-                backgroundColor: "black"
-              }} />
+              });
+            }}
+            alt={row.name}
+            src={row.image}
+            style={{
+              height: "84px",
+              width: "56px",
+              padding: "2px",
+              backgroundColor: "black",
+            }}
+          />
           {/* <button
             onClick={() => {
               Swal.fire({
@@ -293,7 +269,7 @@ export default function Products() {
   };
 
   const getProductsFromDbByNameOrCode = async (name) => {
-        setPending(true);
+    setPending(true);
     await axios
       .get(`/productget?name=${name.toLowerCase()}&deleted=${papelera}`)
       .then((r) => {
@@ -329,41 +305,103 @@ export default function Products() {
         { id }
       )
       .then((r) => {
+        console.log(r.response.data);
+      })
+      .then(async () => await getProductsFromDb())
+      .then(() =>
+        Swal.fire(
+          "Excelente!",
+          `El producto fue ${
+            papelera ? "restablecido" : "borrado"
+          } correctamente.`,
+          "success"
+        )
+      )
+      .catch((e) => {
+        console.log(e);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Algo salio mal",
+        });
+      });
+  };
+
+  const deletedProductsForGood = async (id) => {
+    console.log("id for good", id);
+    await axios
+      .delete(`/productdelete`, { id })
+      .then((r) => {
         console.log(r.data);
       })
-      .then(setSearch(""))
-      .then(setPending(true))
+
       .then(async () => await getProductsFromDb())
-      .catch((e) => console.log(e.data));
+      .then(
+        Swal.fire(
+          "Excelente",
+          id.length > 0
+            ? "Los produtos han sido eliminados definitivamente"
+            : "El produto ha sido eliminado definitivamente",
+          "success"
+        )
+      )
+
+      .catch((e) => {
+        console.log("catch response:",e.response.data);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Algo salio mal",
+        });
+      });
   };
 
   const contextActions = React.useMemo(() => {
-    const handleDelete = () => {
+    const handleDelete = (action) => {
       Swal.fire({
         title: `Seguro que quiere ${
-          papelera ? "restablecer" : "borrar"
+          action === "borrar"
+            ? "borrar"
+            : action === "restablecer"
+            ? "restablecer"
+            : action === "eliminar" && "eliminar definitivamente"
         }:\r ${selectedRows.map((r) => r.name)}?`,
-        text: `${!papelera ? "Si quiere restablecer el producto vaya a la papelera" : ""}` ,
-        icon: 'warning',
+        text: `${
+          action === "borrar"
+            ? "Si quiere restablecer el producto vaya a la papelera"
+            : ""
+        }`,
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: `${papelera ? "Restablecer" :"Borrar"}`,
-        cancelButtonText: 'Cancelar'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setToggleCleared(!toggleCleared);
-          console.log(selectedRows.map((e) => e.id));
-          const arrId = selectedRows.map((r) => r.id);
-          deletedProducts(arrId);
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: `${
+          action === "borrar"
+            ? "Borrar"
+            : action === "restablecer"
+            ? "Restablecer"
+            : action === "eliminar" && "Eliminar"
+        }`,
+        cancelButtonText: "Cancelar",
+      }).then(async (result) => {
+        console.log("result:", result);
+        console.log("action:", action);
 
-          Swal.fire(
-            'Excelente!',
-            `El producto fue ${papelera ? "restablecido":"borrado"} correctamente.`,
-            'success'
-          )
+        if (result.isConfirmed) {
+          if (action === "borrar" || action === "restablecer") {
+            setToggleCleared(!toggleCleared);
+            console.log(selectedRows.map((e) => e.id));
+            const arrId = selectedRows.map((r) => r.id);
+            deletedProducts(arrId);
+          }
+          if (action === "eliminar") {
+            setToggleCleared(!toggleCleared);
+            const idProducts = selectedRows.map((e) => e.id);
+            console.log("idProducts:", { idProducts });
+            deletedProductsForGood(idProducts);
+          }
         }
-      })
+      });
       /* if (
         window.confirm(
           `Seguro que quiere ${
@@ -384,21 +422,31 @@ export default function Products() {
         {!papelera ? (
           <button
             key="delete"
-            onClick={handleDelete}
+            onClick={() => handleDelete("borrar")}
             style={{ backgroundColor: "red" }}
             icon
           >
             Borrar
           </button>
         ) : (
-          <button
-            key="delete"
-            onClick={handleDelete}
-            style={{ backgroundColor: "green" }}
-            icon
-          >
-            Restablecer
-          </button>
+          <>
+            <button
+              key="delete"
+              onClick={() => handleDelete("restablecer")}
+              style={{ backgroundColor: "green" }}
+              icon
+            >
+              Restablecer
+            </button>
+            <button
+              key="eliminar"
+              onClick={() => handleDelete("eliminar")}
+              style={{ backgroundColor: "red", marginLeft: "5px" }}
+              icon
+            >
+              Eliminar
+            </button>
+          </>
         )}
       </>
     );
@@ -430,7 +478,7 @@ export default function Products() {
 
   return (
     <ProductContainer>
-      {console.log(products)}
+      {/* {console.log(products)} */}
       {/* {console.log(DataTable.selectAllRowsItem)} */}
       {/* <ProductNavContainer>
         <NavBar />
@@ -446,9 +494,15 @@ export default function Products() {
           columns={columns}
           data={filteredItems}
           noDataComponent={
-            !papelera && search.length === 0 ?
-              "El inventario esta vacio" : !papelera && search.length > 0 ? "No hay productos con ese nombre o codigo"
-              : papelera && search.length === 0 ? "La papelera esta vacia" : papelera && search.length > 0 &&  "No hay productos con ese nombre o codigo"
+            !papelera && search.length === 0
+              ? "El inventario esta vacio"
+              : !papelera && search.length > 0
+              ? "No hay productos con ese nombre o codigo"
+              : papelera && search.length === 0
+              ? "La papelera esta vacia"
+              : papelera &&
+                search.length > 0 &&
+                "No hay productos con ese nombre o codigo"
           }
           //LOADING
           progressPending={pending}

@@ -6,7 +6,7 @@ const json = require ('./src/Helper/products.json')
 const products = json.data
 
 // Syncing all the models at once.
-db.sync({ force: false }).then(() => {
+db.sync({ force: true }).then(() => {
   server.listen(process.env.PORT, async () => { 
     console.log('%s listening at 3001'); 
     await Product.bulkCreate(products)
