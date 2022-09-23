@@ -333,7 +333,32 @@ export default function Products() {
 
   const contextActions = React.useMemo(() => {
     const handleDelete = () => {
-      if (
+      Swal.fire({
+        title: `Seguro que quiere ${
+          papelera ? "restablecer" : "borrar"
+        }:\r ${selectedRows.map((r) => r.name)}?`,
+        text: `${!papelera ? "Si quiere restablecer el producto vaya a la papelera" : ""}` ,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: `${papelera ? "Restablecer" :"Borrar"}`,
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setToggleCleared(!toggleCleared);
+          console.log(selectedRows.map((e) => e.id));
+          const arrId = selectedRows.map((r) => r.id);
+          deletedProducts(arrId);
+
+          Swal.fire(
+            'Excelente!',
+            `El producto fue ${papelera ? "restablecido":"borrado"} correctamente.`,
+            'success'
+          )
+        }
+      })
+      /* if (
         window.confirm(
           `Seguro que quiere ${
             papelera ? "restablecer" : "borrar"
@@ -342,10 +367,10 @@ export default function Products() {
       ) {
         setToggleCleared(!toggleCleared);
         console.log(selectedRows.map((e) => e.id));
-        /* setDeleteProducts(differenceBy(deleteProducts, selectedRows, "name")); */
+        // setDeleteProducts(differenceBy(deleteProducts, selectedRows, "name")); 
         const arrId = selectedRows.map((r) => r.id);
         deletedProducts(arrId);
-      }
+      } */
     };
 
     return (
@@ -357,7 +382,7 @@ export default function Products() {
             style={{ backgroundColor: "red" }}
             icon
           >
-            Eliminar
+            Borrar
           </button>
         ) : (
           <button
