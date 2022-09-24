@@ -377,7 +377,7 @@ export default function Products() {
         }:\r ${selectedRows.map((r) => r.name)}?`,
         text: `${
           action === "borrar"
-            ? "Si quiere restablecer el producto vaya a la papelera"
+            ? `Si quiere restablecer ${selectedRows.map((r) => r.name).length === 1 ? "el producto" : "los productos"} vaya a la papelera` 
             : ""
         }`,
         icon: "warning",
