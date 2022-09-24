@@ -298,21 +298,23 @@ export default function Products() {
   }, []);
 
   const deletedProducts = async (id) => {
-    console.log("id front", id);
+    console.log("Entre a deletedProducts con id:", id);
     await axios
       .put(
         `productput/logicdelete?action=${papelera ? "undelete" : "delete"}`,
         { id }
       )
       .then((r) => {
-        console.log(r.response.data);
+        console.log(r.data);
       })
       .then(async () => await getProductsFromDb())
       .then(() =>
         Swal.fire(
           "Excelente!",
-          `El producto fue ${
+          id.length === 1 ? `El producto fue ${
             papelera ? "restablecido" : "borrado"
+          } correctamente.` : `Los productos fueron ${
+            papelera ? "restablecidos" : "borrados"
           } correctamente.`,
           "success"
         )
@@ -328,26 +330,30 @@ export default function Products() {
   };
 
   const deletedProductsForGood = async (id) => {
-    console.log("id for good", id);
-    await axios
-      .delete(`/productdelete`, { id })
-      .then((r) => {
-        console.log(r.data);
-      })
-
+    console.log("Entre a deletedProductsForGood con id:", id);
+    const url = "/productdelete";
+    const config = {
+      url,
+      method: "DELETE",
+      data: {  
+        id: id,
+      },
+    };
+console.log("id.length",id.length)
+    const res = await axios(config)
       .then(async () => await getProductsFromDb())
       .then(
         Swal.fire(
           "Excelente",
-          id.length > 0
-            ? "Los produtos han sido eliminados definitivamente"
-            : "El produto ha sido eliminado definitivamente",
+          id.length === 1 
+            ? "El produto ha sido eliminado definitivamente"
+            : "Los produtos han sido eliminados definitivamente",
           "success"
         )
       )
 
       .catch((e) => {
-        console.log("catch response:",e.response.data);
+        console.log("catch response:", e);
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -386,35 +392,17 @@ export default function Products() {
       }).then(async (result) => {
         console.log("result:", result);
         console.log("action:", action);
-
         if (result.isConfirmed) {
+          setToggleCleared(!toggleCleared);
+          const arrId = selectedRows.map((r) => r.id);
           if (action === "borrar" || action === "restablecer") {
-            setToggleCleared(!toggleCleared);
-            console.log(selectedRows.map((e) => e.id));
-            const arrId = selectedRows.map((r) => r.id);
-            deletedProducts(arrId);
+            await deletedProducts(arrId);
           }
           if (action === "eliminar") {
-            setToggleCleared(!toggleCleared);
-            const idProducts = selectedRows.map((e) => e.id);
-            console.log("idProducts:", { idProducts });
-            deletedProductsForGood(idProducts);
+            await deletedProductsForGood(arrId);
           }
         }
       });
-      /* if (
-        window.confirm(
-          `Seguro que quiere ${
-            papelera ? "restablecer" : "borrar"
-          }:\r ${selectedRows.map((r) => r.name)}?`
-        )
-      ) {
-        setToggleCleared(!toggleCleared);
-        console.log(selectedRows.map((e) => e.id));
-        // setDeleteProducts(differenceBy(deleteProducts, selectedRows, "name")); 
-        const arrId = selectedRows.map((r) => r.id);
-        deletedProducts(arrId);
-      } */
     };
 
     return (

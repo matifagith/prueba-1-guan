@@ -42,13 +42,19 @@ router.put("/logicdelete", async (req, res, next) => {
     const {action} = req.query
     if(id){
     console.log('Soy id:', id);
+    const productsBorrados = await Product.findAll(
+      {where: {
+        id: { [Op.in]: id },
+      }}
+    )
     const deleted = await Product.update(action === 'delete' ? {deleted : 'true'} : action === 'undelete' && {deleted : 'false'},{
       where: {
         id: { [Op.in]: id },
       },
     });
     console.log('deleted', deleted)
-    return res.status(200).send(deleted);
+    console.log('productsBorrados', productsBorrados)
+    return res.status(200).send("products deleted succesfully");
     }
     res.status(400).send('id is required')
   } catch (e) {
