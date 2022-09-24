@@ -627,6 +627,7 @@ export default function Products() {
               <button
                 style={{ fontSize: "initial" }}
                 onClick={() => {
+                  setToggleCleared(!toggleCleared);
                   setPapelera(!papelera);
                   setSearch("");
                 }}
