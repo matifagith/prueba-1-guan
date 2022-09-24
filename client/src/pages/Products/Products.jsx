@@ -127,7 +127,7 @@ export default function Products() {
                     image: image.value || row.image,
                     id: row.id,
                   };
-                  console.log("productCreated", productEdited);
+                  /* console.log("productCreated", productEdited); */
                   axios
                     .put(`productput/updateproduct`, productEdited)
                     .then(
@@ -138,7 +138,7 @@ export default function Products() {
                       ).then(async () => await getProductsFromDb())
                     )
                     .catch((e) => {
-                      console.log(e.data);
+                      /* console.log(e.data); */
                       Swal.fire({
                         icon: "error",
                         title: "Oops...",
@@ -264,8 +264,8 @@ export default function Products() {
     await axios
       .get(`/productget?deleted=${papelera}`)
       .then((r) => setProduct(r.data))
-      .then(() => setPending(false))
-      .catch((e) => console.log(e.data));
+      .then(() => setPending(false));
+    /* .catch((e) => console.log(e.data)); */
   };
 
   const getProductsFromDbByNameOrCode = async (name) => {
@@ -275,8 +275,8 @@ export default function Products() {
       .then((r) => {
         setProduct(r.data);
       })
-      .then(() => setPending(false))
-      .catch((e) => console.log(e.data));
+      .then(() => setPending(false));
+    /* .catch((e) => console.log(e.data)); */
   };
 
   useEffect(() => {
@@ -290,7 +290,7 @@ export default function Products() {
   const handleChange = ({ selectedRows }) => {
     // You can set state or dispatch with something like Redux so we can use the retrieved data
     setSelectedProducts(selectedRows);
-    console.log("Selected Rows: ", selectedRows);
+    /*  console.log("Selected Rows: ", selectedRows); */
   };
 
   const handleRowSelected = React.useCallback((state) => {
@@ -298,29 +298,32 @@ export default function Products() {
   }, []);
 
   const deletedProducts = async (id) => {
-    console.log("Entre a deletedProducts con id:", id);
+    /*  console.log("Entre a deletedProducts con id:", id); */
     await axios
       .put(
         `productput/logicdelete?action=${papelera ? "undelete" : "delete"}`,
         { id }
       )
       .then((r) => {
-        console.log(r.data);
+        /*      console.log(r.data); */
       })
-      .then(async () => await getProductsFromDb())
+
       .then(() =>
         Swal.fire(
           "Excelente!",
-          id.length === 1 ? `El producto fue ${
-            papelera ? "restablecido" : "borrado"
-          } correctamente.` : `Los productos fueron ${
-            papelera ? "restablecidos" : "borrados"
-          } correctamente.`,
+          id.length === 1
+            ? `El producto fue ${
+                papelera ? "restablecido" : "borrado"
+              } correctamente.`
+            : `Los productos fueron ${
+                papelera ? "restablecidos" : "borrados"
+              } correctamente.`,
           "success"
         )
       )
+      .then(async () => await getProductsFromDb())
       .catch((e) => {
-        console.log(e);
+        /*     console.log(e); */
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -330,30 +333,30 @@ export default function Products() {
   };
 
   const deletedProductsForGood = async (id) => {
-    console.log("Entre a deletedProductsForGood con id:", id);
+    /*  console.log("Entre a deletedProductsForGood con id:", id); */
     const url = "/productdelete";
     const config = {
       url,
       method: "DELETE",
-      data: {  
+      data: {
         id: id,
       },
     };
-console.log("id.length",id.length)
+    /* console.log("id.length",id.length) */
     const res = await axios(config)
-      .then(async () => await getProductsFromDb())
       .then(
         Swal.fire(
           "Excelente",
-          id.length === 1 
+          id.length === 1
             ? "El produto ha sido eliminado definitivamente"
             : "Los produtos han sido eliminados definitivamente",
           "success"
         )
       )
+      .then(async () => await getProductsFromDb())
 
       .catch((e) => {
-        console.log("catch response:", e);
+        /*   console.log("catch response:", e); */
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -390,8 +393,8 @@ console.log("id.length",id.length)
         }`,
         cancelButtonText: "Cancelar",
       }).then(async (result) => {
-        console.log("result:", result);
-        console.log("action:", action);
+        /*  console.log("result:", result);
+        console.log("action:", action); */
         if (result.isConfirmed) {
           setToggleCleared(!toggleCleared);
           const arrId = selectedRows.map((r) => r.id);
@@ -596,7 +599,7 @@ console.log("id.length",id.length)
                           type: type.value.toLowerCase(),
                           image: image.value,
                         };
-                        console.log("productCreated", productCreated);
+                        /*   console.log("productCreated", productCreated); */
                         axios
                           .post(`/productpost`, productCreated)
                           .then(
@@ -607,7 +610,7 @@ console.log("id.length",id.length)
                             ).then(async () => await getProductsFromDb())
                           )
                           .catch((e) => {
-                            console.log(e.data);
+                            /*    console.log(e.data); */
                             Swal.fire({
                               icon: "error",
                               title: "Oops...",
@@ -630,7 +633,7 @@ console.log("id.length",id.length)
               >
                 {papelera ? "Ir a Inventario" : "Ir a Papelera"}
               </button>
-              {console.log("papelera", papelera)}
+              {/* {console.log("papelera", papelera)} */}
               <input
                 style={{
                   marginLeft: "10px",
