@@ -3,7 +3,7 @@
     {
       "name": "chocolate aguila",
       "price": "250",
-      "description": "Chocolate Aguila 200gr",
+      "description": "chocolate Aguila 200gr",
       "cost": "200",
       "image": "https://arcorencasa.com/wp-content/uploads/2020/06/1012901.jpg",
       "code":"aguila200",
@@ -13,7 +13,7 @@
     {
       "name": "chocolate block",
       "price": "290",
-      "description": "Chocolate Block 170gr",
+      "description": "chocolate Block 170gr",
       "cost": "180",
       "image": "https://d3ugyf2ht6aenh.cloudfront.net/stores/798/865/products/40161206-14d390e4f46382ae0015775389904811-1024-1024.jpg",
       "code":"block170",
@@ -22,16 +22,16 @@
     {
       "name": "escoba",
       "price": "400",
-      "description": "Escoba limpieza profunda",
+      "description": "escoba limpieza profunda",
       "cost": "300",
-      "image": "http://aromatessen.com/wp-content/uploads/2020/05/escoba-galponera.jpg",
+      "image": "http://www.elcaciquelimpieza.com.ar/images/default/productos/76689.jpg",
       "code":"escoba1",
       "type":"limpieza"
     },
     {
       "name": "papel higienico",
       "price": "300",
-      "description": "Papel Higienico Higienol doble hoja",
+      "description": "papel Higienico Higienol doble hoja",
       "cost": "230",
       "image": "https://jumboargentina.vtexassets.com/arquivos/ids/708066-800-auto?v=637919626218730000&width=800&height=auto&aspect=true",
       "code":"papelh1",
@@ -40,16 +40,16 @@
     {
       "name": "pepsi",
       "price": "320",
-      "description": "Pepsi 2.25L sabor original",
+      "description": "pepsi 2.25L sabor original",
       "cost": "250",
-      "image": "https://www.stock.com.py/images/thumbs/0166200.jpeg",
+      "image": "https://confidiet.com/wp-content/uploads/2021/10/1-2.jpg",
       "code":"pepsi1",
       "type":"bebida"
     },
     {
       "name": "jugo de naranja",
       "price": "1200",
-      "description": "Jugo Citric 5L de Naranja",
+      "description": "jugo citric 5l de naranja",
       "cost": "800",
       "image": "https://roldanonline.com.ar/wp-content/uploads/2020/07/7798085680172.jpg",
       "code":"citric11",
@@ -58,7 +58,7 @@
     {
       "name": "jugo multifruta",
       "price": "160",
-      "description": "Jugo BC multifruta 200 ml",
+      "description": "jugo bc multifruta 200 ml",
       "cost": "60",
       "image": "https://arcorencasa.com/wp-content/uploads/2020/05/1010606.jpg",
       "code":"bc1",
@@ -67,7 +67,7 @@
     {
       "name": "bidon cloro 5L",
       "price": "1200",
-      "description": "Bidon cloro 5L, desinfectante para agua de piscinas",
+      "description": "bidon cloro 5l, desinfectante para agua de piscinas",
       "cost": "500",
       "image": "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/047/557/products/cloro-al-90-211-047eddd95e25553f0a16442692487085-640-0.jpg",
       "code":"cloro1",
@@ -76,7 +76,7 @@
     {
       "name": "cigarrillo marlboro 20 fusion",
       "price": "360",
-      "description": "Cigarrillo Marlboro 20 fusion",
+      "description": "cigarrillo marlboro 20 fusion",
       "cost": "200",
       "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
       "code":"marlboro2",
@@ -85,7 +85,7 @@
     {
       "name": "marroc",
       "price": "80",
-      "description": "Marroc marca Fel Fort",
+      "description": "marroc marca fel fort",
       "cost": "45",
       "image": "https://cotillongonic.com.ar/wp-content/uploads/2020/07/150_envuelto.jpg",
       "code":"marroc1",
@@ -94,7 +94,7 @@
     {
       "name": "chupetin evolution sandia",
       "price": "40",
-      "description": "Chupetin Pop Evolutio sabor sandia",
+      "description": "chupetin pop evolution sabor sandia",
       "cost": "15",
       "image": "https://www.royi.com.ar/images/catalog/product/gch051caj1.jpg",
       "code":"chu2",
@@ -112,83 +112,11 @@
     {
       "name": "alambre galvanizado N8",
       "price": "700",
-      "description": "ALAMBRE GALVANIZADO N.8 (4MM)",
+      "description": "alambre galvanizado n.8 (4mm)",
       "cost": "300",
       "image": "https://chapaferro.com.ar/wp-content/uploads/2021/07/AG18X1.jpg",
       "code":"alga8",
       "type":"ferreteria"
-    },
-    {
-      "name": "cigarrillo Marlboro 20 fusion",
-      "price": "360",
-      "description": "Cigarrillo Marlboro 20 fusion",
-      "cost": "200",
-      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
-      "code":"marlboro2",
-      "type":"cigarrillo"
-    },
-    {
-      "name": "cigarrillo Marlboro 20 fusion",
-      "price": "360",
-      "description": "Cigarrillo Marlboro 20 fusion",
-      "cost": "200",
-      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
-      "code":"marlboro2",
-      "type":"cigarrillo"
-    },
-    {
-      "name": "cigarrillo Marlboro 20 fusion",
-      "price": "360",
-      "description": "Cigarrillo Marlboro 20 fusion",
-      "cost": "200",
-      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
-      "code":"marlboro2",
-      "type":"cigarrillo"
-    },
-    {
-      "name": "cigarrillo Marlboro 20 fusion",
-      "price": "360",
-      "description": "Cigarrillo Marlboro 20 fusion",
-      "cost": "200",
-      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
-      "code":"marlboro2",
-      "type":"cigarrillo"
-    },
-    {
-      "name": "cigarrillo Marlboro 20 fusion",
-      "price": "360",
-      "description": "Cigarrillo Marlboro 20 fusion",
-      "cost": "200",
-      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
-      "code":"marlboro2",
-      "type":"cigarrillo"
-    },
-    {
-      "name": "cigarrillo Marlboro 20 fusion",
-      "price": "360",
-      "description": "Cigarrillo Marlboro 20 fusion",
-      "cost": "200",
-      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
-      "code":"marlboro2",
-      "type":"cigarrillo"
-    },
-    {
-      "name": "cigarrillo Marlboro 20 fusion",
-      "price": "360",
-      "description": "Cigarrillo Marlboro 20 fusion",
-      "cost": "200",
-      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
-      "code":"marlboro2",
-      "type":"cigarrillo"
-    },
-    {
-      "name": "cigarrillo Marlboro 20 fusion",
-      "price": "360",
-      "description": "Cigarrillo Marlboro 20 fusion",
-      "cost": "200",
-      "image": "https://www.merqueya.com/wp-content/uploads/2021/04/7702005601154-1-600x600.png",
-      "code":"marlboro2",
-      "type":"cigarrillo"
     }
   ]
 }
