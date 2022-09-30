@@ -52,6 +52,13 @@ export default function Products() {
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
   const [search, setSearch] = useState("");
 
+
+  const Select = ()=>{
+    return (
+      <p>Categoria</p>
+    )
+  }
+
   const columns = [
     /* {
       button: true,
@@ -248,7 +255,7 @@ export default function Products() {
       sortable: false,
     },
     {
-      name: "Categoria",
+      name:<Select/>,
       selector: (row) => row.type /* (row, index)=>{'type'} */,
       sortable: true,
     },
