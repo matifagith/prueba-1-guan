@@ -40,6 +40,7 @@ const FilterComponent = () => {
 
 export default function Products() {
   const [products, setProduct] = useState([]);
+  const [types, setTypes] = useState([]);
   const [deleteProducts, setDeleteProducts] = useState([]);
   const [pending, setPending] = useState(true);
   const [papelera, setPapelera] = useState(false);
@@ -52,11 +53,24 @@ export default function Products() {
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
   const [search, setSearch] = useState("");
 
+  const Select = () => {
+    return <p>Categoria</p>;
+  };
 
-  const Select = ()=>{
-    return (
-      <p>Categoria</p>
-    )
+  const getProductsByType = async(t) =>{
+    setPending(true);
+    await axios
+      .get(`/productget/filtered?type=${t}&deleted=${papelera}`)
+      .then((r) => {
+        setProduct(r.data);
+      })
+      .then(() => setPending(false));
+  }
+
+  const handleFilterByType = (e) =>{
+    e.preventDefault()
+    const products =  getProductsByType(e.target.value)
+    console.log(e.target.value)
   }
 
   const columns = [
@@ -238,7 +252,7 @@ export default function Products() {
               width: "56px",
               padding: "2px",
               backgroundColor: "black",
-              borderRadius:"10px"
+              borderRadius: "10px",
             }}
           />
           {/* <button
@@ -256,7 +270,18 @@ export default function Products() {
       sortable: false,
     },
     {
-      name:<Select/>,
+      name: (
+        <select  onChange={(e) => handleFilterByType(e)}>
+          <option value="default">Todas categorias</option>
+          {types?.map((t, i) => {
+            return (
+              <option value={t} key={i}>
+                {t[0].toUpperCase() + t.slice(1)}
+              </option>
+            );
+          })}
+        </select>
+      ),
       selector: (row) => row.type /* (row, index)=>{'type'} */,
       sortable: true,
     },
@@ -287,8 +312,15 @@ export default function Products() {
     /* .catch((e) => console.log(e.data)); */
   };
 
+  const getTypesFromDb = async () => {
+    await axios.get(`/productget/types?deleted=${papelera}`).then((r) => {
+      setTypes(r.data);
+    });
+  };
+
   useEffect(() => {
     getProductsFromDb();
+    getTypesFromDb();
   }, [papelera]);
 
   useEffect(() => {
@@ -385,7 +417,11 @@ export default function Products() {
         }:\r ${selectedRows.map((r) => r.name)}?`,
         text: `${
           action === "borrar"
-            ? `Si quiere restablecer ${selectedRows.map((r) => r.name).length === 1 ? "el producto" : "los productos"} vaya a la papelera` 
+            ? `Si quiere restablecer ${
+                selectedRows.map((r) => r.name).length === 1
+                  ? "el producto"
+                  : "los productos"
+              } vaya a la papelera`
             : ""
         }`,
         icon: "warning",
