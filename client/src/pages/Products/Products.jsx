@@ -238,6 +238,7 @@ export default function Products() {
               width: "56px",
               padding: "2px",
               backgroundColor: "black",
+              borderRadius:"10px"
             }}
           />
           {/* <button
