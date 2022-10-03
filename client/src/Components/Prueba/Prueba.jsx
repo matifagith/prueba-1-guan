@@ -1,12 +1,83 @@
 import React,{useEffect} from "react";
 import axios from "axios";
-
+import Swal from "sweetalert2";
 import DataTable from "react-data-table-component";
+import Creatable from "react-select/creatable";
 
 // A super simple expandable component.
 const ExpandedComponent = ({ data }) => (
   <pre>{JSON.stringify(data, null, 2)}</pre>
 );
+
+const selectValues=[
+  {value:'golosina', label:'golosina'},
+  {value:'herramientas', label:'herramientas'},
+  {value:'ferreteria', label:'ferreteria'},
+  {value:'cigarrillos', label:'cigarrillos'},
+  {value:'limpieza', label:'limpieza'},
+  {value:'bebidas', label:'bebidas'},
+]
+
+const categorias = [
+  "golosina","herramientas","ferreteria","cigarrillos","limpieza","bebidas"
+]
+
+const abrirSwal = ()=>{
+  Swal.fire({
+    title: `Agregar nuevo producto`,
+   /*  html: `
+  <p><b>Nombre:</b><input type="text" id="name1" class="swal2-input" placeholder="Nombre"></p>
+  <p><b>Codigo:</b><input type="text" id="code" class="swal2-input" placeholder="Codigo"></p>
+  <p><b>Precio:</b><input type="number" id="price" class="swal2-input" placeholder="Precio"></p>
+  <p><b>Costo:</b><input type="number" id="cost" class="swal2-input" placeholder="Costo"></p>
+  <p><b>Descripcion:</b><input type="text" id="description" class="swal2-input" placeholder="Descripcion"></p>`, */
+ /*  input: < Creatable
+  isClearable
+  defaultValue={{ label: "Elige una categoria" }}
+  options={selectValues}
+  onChange={(val)=>{console.log(field.name, val)}}
+  />  */
+  input: 'select',
+  inputOptions:{
+    categorias
+  },
+  inputPlaceholder: 'Categoria',  
+    confirmButtonText: "Agregar",
+    focusConfirm: false,
+    showCancelButton: true,
+    cancelButtonText: "Cancelar",
+    cancelButtonColor: "#d33",
+    preConfirm: () => {
+      const name1 =
+        Swal.getPopup().querySelector("#name1").value;
+      const code =
+        Swal.getPopup().querySelector("#code").value;
+      const price =
+        Swal.getPopup().querySelector("#price").value;
+      const cost =
+        Swal.getPopup().querySelector("#cost").value;
+      const description =
+        Swal.getPopup().querySelector("#description").value;
+      const image =
+        Swal.getPopup().querySelector("#image").value;
+      const type =
+        Swal.getPopup().querySelector("#type").value;
+      if (
+        !name1 ||
+        !code ||
+        !price ||
+        !cost ||
+        !description ||
+        !type
+      ) {
+        Swal.showValidationMessage(
+          `nombre, codigo, precio, costo, descripcion y categoria son requeridos`
+        );
+      }      
+    },
+  })
+}
+
 const FilterComponent = () => {
   const [value, setValue] = React.useState("");
 
@@ -14,6 +85,7 @@ const FilterComponent = () => {
     <div>
       <input />
       <button onClick={() => console.log("borrando input value")}>x</button>
+      <button onClick={()=>abrirSwal()}>Agregar</button>
     </div>
   );
 };

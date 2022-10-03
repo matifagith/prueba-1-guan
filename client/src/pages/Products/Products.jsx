@@ -6,6 +6,8 @@ import DataTable from "react-data-table-component";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import Swal from "sweetalert2";
 import uploadcare from "uploadcare-widget";
+import Creatable from "react-select/creatable";
+
 /* /uploadcare.lang.es.min.js */
 import {
   ProductContainer,
@@ -157,6 +159,7 @@ export default function Products() {
                         "Tu producto ha sido editado correctamente",
                         "success"
                       ).then(async () => await getProductsFromDb())
+                      .then(async () => await getTypesFromDb())                      
                     )
                     .catch((e) => {
                       /* console.log(e.data); */
@@ -448,6 +451,7 @@ export default function Products() {
           if (action === "eliminar") {
             await deletedProductsForGood(arrId);
           }
+          await getTypesFromDb()
         }
       });
     };
@@ -652,6 +656,7 @@ export default function Products() {
                               "Tu producto ha sido creado correctamente",
                               "success"
                             ).then(async () => await getProductsFromDb())
+                            .then(async () => await getTypesFromDb())                            
                           )
                           .catch((e) => {
                             /*    console.log(e.data); */
@@ -673,7 +678,7 @@ export default function Products() {
                 onClick={() => {
                   setToggleCleared(!toggleCleared);
                   setPapelera(!papelera);
-                  setSearch("");
+                  setSearch("");                
                 }}
               >
                 {papelera ? "Ir a Inventario" : "Ir a Papelera"}
